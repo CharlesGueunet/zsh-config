@@ -22,25 +22,40 @@ zstyle ':prezto:load' zfunction 'zargs' 'zmv'
 zstyle ':prezto:load' pmodule \
   'environment' \
   'terminal' \
-  'editor' \
-  'history' \
+  'editor'  \
+  'history'  \
   'directory' \
-  'spectrum' \
   'utility' \
-  'ssh' \
-  'git' \
-  'syntax-highlighting' \
-  'history-substring-search' \
+  'spectrum' \
+  'ssh'   \
+  'git'    \
+  'rsync'   \
+  'archive'  \
+  'tmux'      \
   'completion' \
-  'prompt' \
-  'rsync' \
-  'pacman' \
-  'archive' \
-  'tmux'
+  'autosuggestions' \
+  'syntax-highlighting'     \
+  'history-substring-search' \
+  'prompt'
 
-#
-# Editor
-#
+# Reminder for modules:
+# environment : zsh general sheel option, MUST BE FIRST
+# terminal : set teminal and windows title
+# editor : key binding and dot expansion (... -> ../..)
+# history : history related functions and aliases
+# directory : directory related functions and aliases
+# utility : general functions and aliases
+# spectrum : easy 256 colors
+# ssh : use ssh-agent to simplify ssh use
+# git : git functions, aliases and prompt
+# rsync : define rsync-{copy,move,update,syncronise} aliases
+# archive : lsarchive & unarchive
+# tmux : tmux alias and autostart
+# completion : better tab completion, after utility
+# autosuggestions : promt suggested command
+# syntax-highlighting : zsh coloration in shell, must be antepenultimate
+# history-substring-search : better history search, must be penultimate
+# promtp : beatiful promt, must be last (use others)
 
 # Set the key mapping style to 'emacs' or 'vi'.
 zstyle ':prezto:module:editor' key-bindings 'vi'
@@ -127,6 +142,13 @@ zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
 
 # Set the tab title format.
 zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
+
+#
+# Suggestions
+#
+
+zstyle ':prezto:module:autosuggestions' color 'yes'
+zstyle ':prezto:module:autosuggestions:color' found '2'
 
 #
 # Tmux
