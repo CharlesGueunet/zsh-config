@@ -70,6 +70,10 @@ bindkey -M viins ' ' magic-space
 
 # Alias
 
+# cmake
+alias b="mkdir build; cd build"
+alias nb="rm -rf build; b"
+
 # Alias post command
 
 alias -g G="| grep"
@@ -78,3 +82,8 @@ alias -g L="| less"
 alias -s txt=vim
 
 # Env
+
+# Custom conf
+if [[ -s "${HOME}/.zshrc.postconf" ]]; then
+  source "${HOME}/.zshrc.postconf"
+fi
