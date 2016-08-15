@@ -8,6 +8,11 @@
 # conf files are in ~/.zsh
 export ZDOTDIR=$HOME/.zsh
 
+# Source grml
+if [[ -s "${ZDOTDIR:-$HOME}/grml/.zshrc" ]]; then
+  source "${ZDOTDIR:-$HOME}/grml/.zshrc"
+fi
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -44,7 +49,7 @@ setopt NUMERIC_GLOB_SORT
 # I don't know why I never set this before.
 setopt EXTENDED_GLOB
 
-# ignore command starting with a space
+# ignore command starting with a space in history
 setopt hist_ignore_space
 
 # Separate man page sections.  Neat.
