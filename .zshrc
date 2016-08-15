@@ -20,19 +20,11 @@ fi
 
 # Customize to your needs...
 
-# menu
-zstyle ':completion:*' menu select
-
 # cdr allows to come back to a previous visited directory
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 
-# module
-
-autoload -U compinit promptinit zcalc zsh-mime-setup
-compinit
-promptinit
-zsh-mime-setup
+# Setopt
 
 # If I could disable Ctrl-s completely I would!
 setopt NO_FLOW_CONTROL
@@ -52,6 +44,11 @@ setopt EXTENDED_GLOB
 # ignore command starting with a space in history
 setopt hist_ignore_space
 
+# Zstyle
+
+# menu
+zstyle ':completion:*' menu select=10 interactive
+
 # Separate man page sections.  Neat.
 zstyle ':completion:*:manuals' separate-sections true
 
@@ -67,6 +64,11 @@ zstyle ':completion::*:(rm|vi):*' ignore-line true
 # Don't complete directory we are already in (../here)
 zstyle ':completion:*' ignore-parents parent pwd
 zstyle ':completion::approximate*:*' prefix-needed false
+
+zstyle ':completion:*' list-suffixes true
+
+
+# key binding
 
 # Tab -> complete or next completion
 bindkey '^i' expand-or-complete-prefix
@@ -91,8 +93,10 @@ alias -g L="| less"
 alias -s txt=vim
 
 # Env
-export EDITOR="vim"
+export VISUAL="vim"
+export EDITOR=$VISUAL
 export SVN_EDITOR=$EDITOR
+export GIT_EDITOR="vim"
 
 # Functions
 
