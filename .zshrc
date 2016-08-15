@@ -44,7 +44,8 @@ setopt NUMERIC_GLOB_SORT
 # I don't know why I never set this before.
 setopt EXTENDED_GLOB
 
-# case insensitive completion
+# ignore command starting with a space
+setopt hist_ignore_space
 
 # Separate man page sections.  Neat.
 zstyle ':completion:*:manuals' separate-sections true
@@ -70,6 +71,9 @@ bindkey -M viins ' ' magic-space
 
 # Alias
 
+# builtin
+alias ls="ls --color -h --group-directories-first -X"
+
 # cmake
 alias b="mkdir build; cd build"
 alias nb="rm -rf build; b"
@@ -82,6 +86,22 @@ alias -g L="| less"
 alias -s txt=vim
 
 # Env
+export EDITOR="vim"
+export SVN_EDITOR=$EDITOR
+
+# Functions
+
+fancy-ctrl-z () {
+    if [[ $#BUFFER -eq 0 ]]; then
+        BUFFER="fg"
+        zle accept-line
+    else
+        zle push-input
+        zle clear-screen
+    fi
+}
+zle -N fancy-ctrl-z
+bindkey '' fancy-ctrl-z
 
 # Custom conf
 if [[ -s "${HOME}/.zshrc.postconf" ]]; then
