@@ -74,8 +74,8 @@ zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
 # Editor
 #
 
-# Set the key mapping style to 'emacs' or 'vi'.
-zstyle ':prezto:module:editor' key-bindings 'vi'
+# Set the key mapping style to 'emacs' or 'vi'. : remove tab completion
+#zstyle ':prezto:module:editor' key-bindings 'vi'
 
 # Auto convert .... to ../..
 zstyle ':prezto:module:editor' dot-expansion 'yes'
