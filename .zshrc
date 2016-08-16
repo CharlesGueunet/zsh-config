@@ -50,9 +50,6 @@ setopt hist_ignore_space
 # Tab -> complete or next completion
 bindkey '^i' expand-or-complete-prefix
 
-# it's like, space AND completion.  Gnarlbot.
-bindkey -M viins ' ' magic-space
-
 # Alias
 
 # builtin
@@ -74,7 +71,7 @@ alias -s txt=vim
 export VISUAL="vim"
 export EDITOR=$VISUAL
 export SVN_EDITOR=$EDITOR
-export GIT_EDITOR="vim"
+export GIT_EDITOR=$EDITOR
 
 # Functions
 
