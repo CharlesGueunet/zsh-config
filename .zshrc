@@ -61,6 +61,7 @@ alias ls="ls --color -h --group-directories-first -X"
 # cmake
 alias b="mkdir build; cd build"
 alias nb="rm -rf build; b"
+alias rmcmake="rm -rf CMakeFiles Makefile cmake_install.cmake CMakeCache.txt"
 
 # Alias post command
 
