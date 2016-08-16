@@ -44,29 +44,6 @@ setopt EXTENDED_GLOB
 # ignore command starting with a space in history
 setopt hist_ignore_space
 
-# Zstyle
-
-# menu
-zstyle ':completion:*' menu select=10 interactive
-
-# Separate man page sections.  Neat.
-zstyle ':completion:*:manuals' separate-sections true
-
-# Egomaniac!
-zstyle ':completion:*' list-separator 'fREW'
-
-# Errors format
-zstyle ':completion:*:corrections' format '%B%d (errors %e)%b'
-
-# Don't complete stuff already on the line
-zstyle ':completion::*:(rm|vi):*' ignore-line true
-
-# Don't complete directory we are already in (../here)
-zstyle ':completion:*' ignore-parents parent pwd
-zstyle ':completion::approximate*:*' prefix-needed false
-
-zstyle ':completion:*' list-suffixes true
-
 
 # key binding
 
@@ -112,7 +89,7 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '' fancy-ctrl-z
 
-# Custom conf
-if [[ -s "${HOME}/.zshrc.postconf" ]]; then
-  source "${HOME}/.zshrc.postconf"
+# Custom conf (in home or folder .zsh)
+if [[ -s "${ZDOTDIR:-$HOME}/.zshrc.postconf" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zshrc.postconf"
 fi
