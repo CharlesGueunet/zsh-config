@@ -32,14 +32,11 @@ setopt NO_FLOW_CONTROL
 # beeps are annoying
 setopt NO_BEEP
 
-# Case insensitive globbing
+# Glob is clever research / completion
 setopt NO_CASE_GLOB
-
-# Be Reasonable!
-setopt NUMERIC_GLOB_SORT
-
-# I don't know why I never set this before.
 setopt EXTENDED_GLOB
+setopt NUMERIC_GLOB_SORT
+setopt GLOB_COMPLETE
 
 # ignore command starting with a space in history
 setopt hist_ignore_space
@@ -60,6 +57,9 @@ alias sz="source $HOME/.zshrc"
 alias b="mkdir build; cd build"
 alias nb="rm -rf build; b"
 alias rmcmake="rm -rf CMakeFiles Makefile cmake_install.cmake CMakeCache.txt"
+
+# git
+alias gitgraph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 
 # Alias post command
 
