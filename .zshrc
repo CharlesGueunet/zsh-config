@@ -55,7 +55,8 @@ alias sz="source $HOME/.zshrc"
 
 # cmake
 alias b="mkdir build; cd build"
-alias nb="rm -rf build; b"
+alias rb="rm -rf build/"
+alias nb="rb; b"
 alias rmcmake="rm -rf CMakeFiles Makefile cmake_install.cmake CMakeCache.txt"
 
 # git
@@ -87,6 +88,18 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '' fancy-ctrl-z
+
+start-tmux () {
+    if [[ $#BUFFER -eq 0 ]]; then
+        BUFFER="tmux -2"
+        zle accept-line
+    else
+        zle push-input
+        zle clear-screen
+    fi
+}
+zle -N start-tmux
+bindkey '' start-tmux
 
 # Custom conf (in home or folder .zsh)
 if [[ -s "${ZDOTDIR:-$HOME}/.zshrc.postconf" ]]; then
