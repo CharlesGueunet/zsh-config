@@ -39,7 +39,7 @@ setopt NUMERIC_GLOB_SORT
 setopt GLOB_COMPLETE
 
 # ignore command starting with a space in history
-setopt hist_ignore_space
+setopt HIST_IGNORE_SPACE
 
 
 # key binding
