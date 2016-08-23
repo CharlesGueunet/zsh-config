@@ -66,6 +66,7 @@ alias gitgraph="git log --graph --abbrev-commit --decorate --format=format:'%C(b
 
 alias -g G="| grep"
 alias -g L="| less"
+alias -g S="| sed"
 
 alias -s txt=vim
 
