@@ -100,7 +100,19 @@ start-tmux () {
     fi
 }
 zle -N start-tmux
-bindkey '' start-tmux
+bindkey '' start-tmux
+
+att-tmux () {
+    if [[ $#BUFFER -eq 0 ]]; then
+        BUFFER="tmux -2 a"
+        zle accept-line
+    else
+        zle push-input
+        zle clear-screen
+    fi
+}
+zle -N att-tmux
+bindkey '' att-tmux
 
 # Custom conf (in home or folder .zsh)
 if [[ -s "${ZDOTDIR:-$HOME}/.zshrc.postconf" ]]; then
