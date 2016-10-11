@@ -52,6 +52,7 @@ bindkey '^i' expand-or-complete-prefix
 # builtin
 alias ls="ls --color -h --group-directories-first -X"
 alias sz="source $HOME/.zshrc"
+alias sue="su; exit"
 
 # cmake
 alias b="mkdir build; cd build"
