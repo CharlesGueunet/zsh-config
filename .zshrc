@@ -41,6 +41,9 @@ setopt GLOB_COMPLETE
 # ignore command starting with a space in history
 setopt HIST_IGNORE_SPACE
 
+# avoid automatic change the title
+DISABLE_AUTO_TITLE=true
+
 
 # key binding
 

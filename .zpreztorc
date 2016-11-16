@@ -21,7 +21,6 @@ zstyle ':prezto:load' zfunction 'zargs' 'zmv'
 # The order matters.
 zstyle ':prezto:load' pmodule \
   'environment' \
-  'terminal' \
   'editor'  \
   'history'  \
   'directory' \
@@ -40,7 +39,6 @@ zstyle ':prezto:load' pmodule \
 
 # Reminder for modules:
 # environment : zsh general sheel option, MUST BE FIRST
-# terminal : set teminal and windows title
 # editor : key binding and dot expansion (... -> ../..)
 # history : history related functions and aliases
 # directory : directory related functions and aliases
@@ -56,19 +54,6 @@ zstyle ':prezto:load' pmodule \
 # syntax-highlighting : zsh coloration in shell, must be antepenultimate
 # history-substring-search : better history search, must be penultimate
 # promtp : beatiful promt, must be last (use others)
-
-#
-# Terminal
-#
-
-# Auto set the tab and window titles.
-zstyle ':prezto:module:terminal' auto-title 'no'
-
-# Set the window title format.
-zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
-
-# Set the tab title format.
-zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
 
 #
 # Editor
