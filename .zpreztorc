@@ -27,7 +27,6 @@ zstyle ':prezto:load' pmodule \
   'utility' \
   'spectrum' \
   'ssh'   \
-  'git'    \
   'rsync'   \
   'archive'  \
   'tmux'      \
@@ -45,7 +44,6 @@ zstyle ':prezto:load' pmodule \
 # utility : general functions and aliases
 # spectrum : easy 256 colors
 # ssh : use ssh-agent to simplify ssh use
-# git : git functions, aliases and prompt
 # rsync : define rsync-{copy,move,update,syncronise} aliases
 # archive : lsarchive & unarchive
 # tmux : tmux alias and autostart
@@ -78,13 +76,6 @@ zstyle ':prezto:module:gnu-utility' prefix 'g'
 
 # Set the SSH identities to load into the agent.
 zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa2' 'id_github'
-
-#
-# Git
-#
-
-# Ignore submodules when they are 'dirty', 'untracked', 'all', or 'none'.
-zstyle ':prezto:module:git:status:ignore' submodules 'none'
 
 #
 # Tmux
