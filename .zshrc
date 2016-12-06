@@ -38,12 +38,19 @@ setopt EXTENDED_GLOB
 setopt NUMERIC_GLOB_SORT
 setopt GLOB_COMPLETE
 
+# autocomplete
+
+zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
+zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+
 # ignore command starting with a space in history
 setopt HIST_IGNORE_SPACE
 
 # avoid automatic change the title
 DISABLE_AUTO_TITLE=true
-
 
 # key binding
 
