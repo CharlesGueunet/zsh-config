@@ -38,6 +38,9 @@ setopt EXTENDED_GLOB
 setopt NUMERIC_GLOB_SORT
 setopt GLOB_COMPLETE
 
+# Remove annoying file redirection error
+setopt CLOBBER
+
 # autocomplete
 
 zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
