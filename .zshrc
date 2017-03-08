@@ -1,9 +1,5 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+# Created bu Charles Gueunet <charles.gueunet+zsh@gmail.com>
+
 
 # conf files are in ~/.zsh
 export ZDOTDIR=$HOME/.zsh
