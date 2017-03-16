@@ -142,7 +142,7 @@ precmd() {
 }
 zle-keymap-select() {
   RPROMPT=""
-  [[ $KEYMAP = vicmd ]] && RPROMPT="(CMD)"
+  [[ $KEYMAP = vicmd ]] && RPROMPT='[%F{yellow}NORMAL%F{reset}]'
   () { return $__prompt_status }
   zle reset-prompt
 }
