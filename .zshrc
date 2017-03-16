@@ -56,6 +56,14 @@ DISABLE_AUTO_TITLE=true
 # Tab -> complete or next completion
 bindkey '^i' expand-or-complete-prefix
 
+# vi mode
+bindkey -v
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^r' history-incremental-search-backward
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search
+
 # Alias
 
 # builtin
@@ -88,6 +96,7 @@ export GIT_EDITOR=$EDITOR
 
 # Functions
 
+# ctrl z
 fancy-ctrl-z () {
     if [[ $#BUFFER -eq 0 ]]; then
         BUFFER="fg"
@@ -100,6 +109,8 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '' fancy-ctrl-z
 
+# tmux
+
 start-tmux () {
     if [[ $#BUFFER -eq 0 ]]; then
         BUFFER="tmux -2"
@@ -110,7 +121,7 @@ start-tmux () {
     fi
 }
 zle -N start-tmux
-bindkey '' start-tmux
+bindkey '' start-tmux
 
 att-tmux () {
     if [[ $#BUFFER -eq 0 ]]; then
@@ -122,7 +133,26 @@ att-tmux () {
     fi
 }
 zle -N att-tmux
-bindkey '' att-tmux
+bindkey '' att-tmux
+
+# vi indicator
+
+precmd() {
+  RPROMPT=""
+}
+zle-keymap-select() {
+  RPROMPT=""
+  [[ $KEYMAP = vicmd ]] && RPROMPT="(CMD)"
+  () { return $__prompt_status }
+  zle reset-prompt
+}
+zle-line-init() {
+  typeset -g __prompt_status="$?"
+}
+zle -N zle-keymap-select
+zle -N zle-line-init
+
+export KEYTIMEOUT=1
 
 # Custom conf (in home or folder .zsh)
 if [[ -s "${ZDOTDIR:-$HOME}/.zshrc.postconf" ]]; then
