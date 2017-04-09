@@ -1,4 +1,4 @@
-This is a simple zsh configuration based on zprezto and grml.
+This is a simple zsh configuration based on zprezto, fzf and grml.
 
 Copyright (C) 2016 Charles Gueunet
 

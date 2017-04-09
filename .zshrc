@@ -158,3 +158,8 @@ export KEYTIMEOUT=1
 if [[ -s "${ZDOTDIR:-$HOME}/.zshrc.postconf" ]]; then
   source "${ZDOTDIR:-$HOME}/.zshrc.postconf"
 fi
+
+# fuzzu completion with ctrl-r / ctrl-t / alt-c
+if [[ -f "${ZDOTDIR}/fzf.zsh" ]]; then
+    source "${ZDOTDIR}/fzf.zsh"
+fi
