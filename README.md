@@ -1,4 +1,4 @@
-This is a simple zsh configuration based on zprezto.
+This is a simple zsh configuration based on zprezto and grml.
 
 Copyright (C) 2016 Charles Gueunet
 
@@ -40,4 +40,5 @@ git submodule update --recursive --init
 
 # USE
 
-You can have a **.zshrc.preconf** to tweak prezto and a **.zshrc.postconf** for your own config.
+You can have in you *.zsh/* folder  a **.zpreztorc.postconf** to tweak prezto
+and a **.zshrc.postconf** for your own config.
