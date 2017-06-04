@@ -58,8 +58,8 @@ bindkey '^i' expand-or-complete-prefix
 
 # vi mode
 bindkey -v
-bindkey '^P' up-history
-bindkey '^N' down-history
+bindkey '^P' up-line-or-search
+bindkey '^N' down-line-or-search
 bindkey '^r' history-incremental-search-backward
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
