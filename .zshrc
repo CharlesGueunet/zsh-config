@@ -110,30 +110,31 @@ zle -N fancy-ctrl-z
 bindkey '' fancy-ctrl-z
 
 # tmux
+# Need to find a good shortcut
 
-start-tmux () {
-    if [[ $#BUFFER -eq 0 ]]; then
-        BUFFER="tmux -2"
-        zle accept-line
-    else
-        zle push-input
-        zle clear-screen
-    fi
-}
-zle -N start-tmux
-bindkey '' start-tmux
+# start-tmux () {
+#     if [[ $#BUFFER -eq 0 ]]; then
+#         BUFFER="tmux -2"
+#         zle accept-line
+#     else
+#         zle push-input
+#         zle clear-screen
+#     fi
+# }
+# zle -N start-tmux
+# bindkey '' start-tmux
 
-att-tmux () {
-    if [[ $#BUFFER -eq 0 ]]; then
-        BUFFER="tmux -2 a"
-        zle accept-line
-    else
-        zle push-input
-        zle clear-screen
-    fi
-}
-zle -N att-tmux
-bindkey '' att-tmux
+# att-tmux () {
+#     if [[ $#BUFFER -eq 0 ]]; then
+#         BUFFER="tmux -2 a"
+#         zle accept-line
+#     else
+#         zle push-input
+#         zle clear-screen
+#     fi
+# }
+# zle -N att-tmux
+# bindkey '' att-tmux
 
 # vi indicator
 
