@@ -94,6 +94,11 @@ export EDITOR=$VISUAL
 export SVN_EDITOR=$EDITOR
 export GIT_EDITOR=$EDITOR
 
+# true color vim / tmux
+if [[ -z $TMUX ]]; then
+    export TERM='xterm-256color'
+fi
+
 # Functions
 
 # ctrl z
