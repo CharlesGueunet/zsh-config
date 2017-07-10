@@ -1,5 +1,4 @@
-# Created bu Charles Gueunet <charles.gueunet+zsh@gmail.com>
-
+# Created by Charles Gueunet <charles.gueunet+zsh@gmail.com>
 
 # conf files are in ~/.zsh
 export ZDOTDIR=$HOME/.zsh
@@ -80,6 +79,10 @@ alias rmcmake="rm -rf CMakeFiles Makefile cmake_install.cmake CMakeCache.txt"
 # git
 alias gitgraph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 
+# tmux
+alias t="tmux -2"
+alias ta="tmux -2 a"
+
 # Alias post command
 
 alias -g G="| grep"
@@ -93,6 +96,7 @@ export VISUAL="vim"
 export EDITOR=$VISUAL
 export SVN_EDITOR=$EDITOR
 export GIT_EDITOR=$EDITOR
+export KEYTIMEOUT=1
 
 # true color vim / tmux
 if [[ -z $TMUX ]]; then
@@ -101,7 +105,7 @@ fi
 
 # Functions
 
-# ctrl z
+# ctrl z back and forth
 fancy-ctrl-z () {
     if [[ $#BUFFER -eq 0 ]]; then
         BUFFER="fg"
@@ -114,35 +118,7 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '' fancy-ctrl-z
 
-# tmux
-# Need to find a good shortcut
-
-# start-tmux () {
-#     if [[ $#BUFFER -eq 0 ]]; then
-#         BUFFER="tmux -2"
-#         zle accept-line
-#     else
-#         zle push-input
-#         zle clear-screen
-#     fi
-# }
-# zle -N start-tmux
-# bindkey '' start-tmux
-
-# att-tmux () {
-#     if [[ $#BUFFER -eq 0 ]]; then
-#         BUFFER="tmux -2 a"
-#         zle accept-line
-#     else
-#         zle push-input
-#         zle clear-screen
-#     fi
-# }
-# zle -N att-tmux
-# bindkey '' att-tmux
-
 # vi indicator
-
 precmd() {
   RPROMPT=""
 }
@@ -158,14 +134,14 @@ zle-line-init() {
 zle -N zle-keymap-select
 zle -N zle-line-init
 
-export KEYTIMEOUT=1
+# Other conf
 
 # Custom conf (in home or folder .zsh)
 if [[ -s "${ZDOTDIR:-$HOME}/.zshrc.postconf" ]]; then
   source "${ZDOTDIR:-$HOME}/.zshrc.postconf"
 fi
 
-# fuzzu completion with ctrl-r / ctrl-t / alt-c
+# fuzzy completion with ctrl-r / ctrl-t / alt-c
 if [[ -f "${ZDOTDIR}/fzf.zsh" ]]; then
     source "${ZDOTDIR}/fzf.zsh"
 fi
