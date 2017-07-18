@@ -99,7 +99,7 @@ export GIT_EDITOR=$EDITOR
 export KEYTIMEOUT=1
 
 # true color vim / tmux
-if [[ -z $TMUX ]]; then
+if [[ -z $TMUX && -z $STY ]]; then
     export TERM='xterm-256color'
 fi
 
