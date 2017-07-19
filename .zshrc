@@ -57,11 +57,12 @@ bindkey '^i' expand-or-complete-prefix
 
 # vi mode
 bindkey -v
-bindkey '^P' up-line-or-search
-bindkey '^N' down-line-or-search
-bindkey '^r' history-incremental-search-backward
-bindkey '^[[A' up-line-or-search
-bindkey '^[[B' down-line-or-search
+bindkey -M viins "$key_info[Control]P" up-line-or-search
+bindkey -M viins "$key_info[Control]N" down-line-or-search
+bindkey -M viins "$key_info[Control]R" history-incremental-search-backward
+bindkey -M viins "$key_info[Up]" up-line-or-search
+bindkey -M viins "$key_info[Down]" down-line-or-search
+bindkey -M viins "$key_info[Control]Y" vi-end-of-line
 
 # Alias
 
