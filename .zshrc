@@ -3,11 +3,6 @@
 # conf files are in ~/.zsh
 export ZDOTDIR=$HOME/.zsh
 
-# Source grml
-if [[ -s "${ZDOTDIR:-$HOME}/grml/.zshrc" ]]; then
-  source "${ZDOTDIR:-$HOME}/grml/.zshrc"
-fi
-
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
