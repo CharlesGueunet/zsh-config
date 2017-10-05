@@ -106,6 +106,12 @@ fi
 
 # Functions
 
+# man inside vim with completion
+vman () {
+    MANWIDTH=150 MANPAGER='col -bx' man $@ | vim -R -c "set ft=man" -
+}
+fpath=($HOME/.zsh/completion/ $fpath)
+
 # ctrl z back and forth
 fancy-ctrl-z () {
     if [[ $#BUFFER -eq 0 ]]; then

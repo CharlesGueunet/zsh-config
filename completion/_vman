@@ -1,0 +1,3 @@
+#compdef vman
+compdef _vman vman
+compdef vman=man
