@@ -1,5 +1,71 @@
 This is a simple zsh configuration based on zprezto, fzf and grml.
 
+__INSTALL__
+-----------
+
+```zsh
+cd
+git clone --recursive https://github.com/CharlesGueunet/zsh-config.git .zsh
+ln -s .zsh/.zshrc .
+```
+
+You can copy your old *~/.zhistory* in the *~/.zsh* folder if you want to keep it
+for history and suggestion.
+
+### Update
+
+```zsh
+cd ~/.zsh
+git pull --recurse-submodules
+git submodule update --recursive --init
+```
+__CUSTOMIZE__
+--------------
+
+### Zprezto
+
+Zprezto related configurations are done in the `${ZDOTDIR}/.zpreztorc` file. If you want to
+overwrite any of these configuration, just write them in a `${ZDOTDIR}/.zprezorc.postconf` file.
+The documentation related to zprezto (and each module) is available in the
+[wiki](https://github.com/sorin-ionescu/prezto).
+
+### Zsh
+
+Zsh related configuration are on the `${ZDOTDIR}/.zshrc` file.
+You can overwrite/extend this configuration using a `${ZDOTDIR}/.zshrc.postconf` file.
+
+__USAGE__
+---------
+
+### Tricks
+
+When changing directory, `..` will go to the parent directory.
+If you type `...` it will be transformed automatically into `../..` and each `.` you add will
+be transformed into `../` for a fast traversal.
+
+### Commands
+
+```zsh
+popd # undo a directory change
+cd +N # make N undo directory change
+```
+
+### Shortcuts
+
+* FZF : 
+  * `Ctrl-r` fuzzy navigate history
+  * `Ctrl-t` fuzzy find a file / folder
+  * `Alt-c`  fuzzy change current directory
+* Completion
+  * `Ctrl-f` complete next suggested word
+  * `Ctrl-y` complete with the whole suggestion
+  * `Ctrl-p/n` navigate through last version of this command
+
+__Copyright__
+-------------
+
+This git is mainted by **Charles Gueunet** \<charles.gueunet+zsh@gmail.com\>
+
 Copyright (C) 2016 Charles Gueunet
 
 This program is free software: you can redistribute it and/or modify
@@ -15,30 +81,3 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
-# zsh-config
-Custom zsh config based on zprezto
-
-# INSTALL
-
-```zsh
-cd
-git clone --recursive https://github.com/CharlesGueunet/zsh-config.git .zsh
-ln -s .zsh/.zshrc .
-```
-
-You can copy your old *~/.zhistory* in the *~/.zsh* folder if you want to keep it
-for history and suggestion.
-
-Note if you have simply cloned this repo, you need to install git submodules
-with:
-
-```zsh
-cd ~/.zsh
-git submodule update --recursive --init
-```
-
-# USE
-
-You can have in you *.zsh/* folder  a **.zpreztorc.postconf** to tweak prezto
-and a **.zshrc.postconf** for your own config.
