@@ -48,6 +48,7 @@ be transformed into `../` for a fast traversal.
 ```zsh
 popd # undo a directory change
 cd +N # make N undo directory change
+cdt  # go to a temporary directory
 ```
 
 ### Shortcuts
