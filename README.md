@@ -5,17 +5,18 @@ __INSTALL__
 
 ```zsh
 cd
-git clone --recursive https://github.com/CharlesGueunet/zsh-config.git .zsh
-ln -s .zsh/.zshrc .
+ZDOTDIR=${HOME}/.zsh
+git clone --recursive https://github.com/CharlesGueunet/zsh-config.git $ZDOTDIR
+ln -s ${ZDOTDIR}/.zshrc .
 ```
 
-You can copy your old *~/.zhistory* in the *~/.zsh* folder if you want to keep it
+You can copy your old *~/.zhistory* in the `$ZDOTDIR` folder if you want to keep it
 for history and suggestion.
 
 ### Update
 
 ```zsh
-cd ~/.zsh
+cd $ZDOTDIR
 git pull --recurse-submodules
 git submodule update --recursive --init
 ```

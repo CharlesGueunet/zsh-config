@@ -1,7 +1,11 @@
 # Created by Charles Gueunet <charles.gueunet+zsh@gmail.com>
 
-# conf files are in ~/.zsh
-export ZDOTDIR=$HOME/.zsh
+# Follow the link (if any) to find the config folder
+if [ -L $HOME/.zshrc ]; then
+    export ZDOTDIR=$(dirname `readlink -f $HOME/.zshrc`)
+else
+    export ZDOTDIR=${HOME}/.zsh/
+fi
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/grml/zshrc" ]]; then
