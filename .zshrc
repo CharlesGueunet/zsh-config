@@ -88,6 +88,10 @@ alias gitgraph="git log --graph --abbrev-commit --decorate --format=format:'%C(b
 alias t="tmux -2"
 alias ta="tmux -2 a"
 
+# Keyboard qwerty with accent
+# and "," (leader) on Caps Lock
+alias rebind='setxkbmap -model pc104 -layout us -option compose:rctrl ; xmodmap -e "keycode 66 = comma Escape NoSymbol NoSymbol" ; xmodmap -e "clear lock"'
+
 # Alias post command
 
 alias -g G="| grep"
