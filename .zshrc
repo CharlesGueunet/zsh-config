@@ -31,6 +31,9 @@ setopt NO_FLOW_CONTROL
 # beeps are annoying
 setopt NO_BEEP
 
+# avoid automatic change the title
+DISABLE_AUTO_TITLE=true
+
 # Glob is clever research / completion
 setopt NO_CASE_GLOB
 setopt EXTENDED_GLOB
@@ -48,11 +51,15 @@ zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
 zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
 
+# history
+
+setopt APPEND_HISTORY
+
 # ignore command starting with a space in history
 setopt HIST_IGNORE_SPACE
 
-# avoid automatic change the title
-DISABLE_AUTO_TITLE=true
+# remove duplicate blanks
+setopt HIST_REDUCE_BLANKS
 
 # key binding
 
