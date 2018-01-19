@@ -104,6 +104,8 @@ alias rebind='setxkbmap -model pc104 -layout us -option compose:rctrl ; xmodmap 
 alias -g G="| grep"
 alias -g L="| less"
 alias -g S="| sed"
+alias -g V="| vim -- "
+alias -g X="| xclip"
 
 alias -s txt=vim
 
