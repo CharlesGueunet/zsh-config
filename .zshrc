@@ -101,7 +101,7 @@ alias ta="tmux -2 a"
 
 # Keyboard qwerty with accent
 # and "," (leader) on Caps Lock
-alias rebind='setxkbmap -model pc104 -layout us -option compose:rctrl ; xmodmap -e "keycode 66 = comma Escape NoSymbol NoSymbol" ; xmodmap -e "clear lock"'
+alias rebind='setxkbmap -model pc104 -option compose:rctrl ; xmodmap -e "keycode 66 = comma Escape NoSymbol NoSymbol" ; xmodmap -e "clear lock"'
 
 # Alias post command
 
