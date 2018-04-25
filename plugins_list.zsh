@@ -1,3 +1,6 @@
+# let zplug manage zplug
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+
 # prezto, depth:1
 zplug  "modules/environment", from:prezto, depth:1
 zplug  "modules/editor", from:prezto, depth:1, on:"modules/environment"
