@@ -1,5 +1,3 @@
-source ${ZPLUG_HOME}/init.zsh
-
 # prezto
 zplug  "modules/environment", from:prezto
 zplug  "modules/editor", from:prezto, on:"modules/environment"
