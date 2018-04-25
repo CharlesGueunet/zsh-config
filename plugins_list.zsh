@@ -6,7 +6,6 @@ zplug  "modules/environment", from:prezto, depth:1
 zplug  "modules/editor", from:prezto, depth:1, on:"modules/environment"
 zplug  "modules/history", from:prezto, depth:1, on:"modules/environment"
 zplug  "modules/directory", from:prezto, depth:1, on:"modules/environment"
-zplug  "modules/utility", from:prezto, depth:1, on:"modules/environment"
 zplug  "modules/spectrum", from:prezto, depth:1, on:"modules/environment"
 zplug  "modules/ssh", from:prezto, depth:1, on:"modules/environment"
 zplug  "modules/archive", from:prezto, depth:1, on:"modules/environment"
