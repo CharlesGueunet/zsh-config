@@ -13,7 +13,8 @@ ln -s ${ZDOTDIR}/.zshrc .
 ```
 
 You can copy your old *~/.zhistory* in the `$ZDOTDIR` folder if you want to keep
-your old history
+your old history.
+Then, (re)start zsh.
 
 ### Update
 
@@ -31,7 +32,7 @@ __CUSTOMIZE__
 
 ### Plugins
 
-* `$ZDOTDIR/plugins_custom_list.zsh`: add new plugins. For the syntax, see the [zplug](https://github.com/zplug/zplug) of the `plugins_list.zsh` file.
+* `$ZDOTDIR/plugins_custom_list.zsh`: add new plugins. For the syntax, see the [zplug website](https://github.com/zplug/zplug) of the `plugins_list.zsh` file.
 * `$ZDOTDIR/plugins_custom_conf.zsh`: overwite and add plugins configuration.
 
 ### Global zsh
