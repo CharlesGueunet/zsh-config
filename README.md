@@ -22,9 +22,9 @@ In your shell:
 
 ```zsh
 cd $ZDOTDIR
-git pull # update from git
-Update   # update plugins
-sz       # re-interpret the .zshrc
+git pull       # update from git
+plugins update # update plugins
+sz             # re-interpret the .zshrc
 ```
 
 __CUSTOMIZE__
@@ -42,8 +42,9 @@ __CUSTOMIZE__
 __ISSUES__
 ----------
 
-* `$FPATH` does not contains *zplug* related path. Some zplug function are not
-avaiable. This is due to a fix allowing to switch user (`su`).
+* `$FPATH` does not contains *zplug* related path. If you add a custom plugins
+adding new commands, see the `plugins` function to see how to make them
+avaiable. This is due to a fix for the `su` command.
 
 __USAGE__
 ---------
@@ -63,7 +64,7 @@ be transformed into `../` for a fast traversal.
 popd   # undo a directory change
 cd +N  # make N undo directory change
 cdt    # go to a temporary directory
-Update # Update plugins
+plugins update # Update plugins
 ```
 
 ### Shortcuts
