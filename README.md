@@ -38,6 +38,12 @@ __CUSTOMIZE__
 
 * `$ZDOTDIR/zshrc_custom.zsh`: overwrite and add global zsh configurations.
 
+__ISSUES__
+----------
+
+* `$FPATH` does not contains *zplug* related path. Some zplug function are not
+avaiable. This is due to a fix allowing to switch user (`su`).
+
 __USAGE__
 ---------
 
