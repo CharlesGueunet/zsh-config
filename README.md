@@ -1,5 +1,11 @@
 This is a simple zsh configuration based on zprezto, fzf and grml.
 
+__CHANGELOG__
+-------------
+
+* Use [zplug](https://github.com/zplug/zplug) to manage plugins
+* Change *.zshrc.postconf* to *zshrc_custom.zsh*
+
 __INSTALL__
 -----------
 
@@ -38,13 +44,6 @@ __CUSTOMIZE__
 ### Global zsh
 
 * `$ZDOTDIR/zshrc_custom.zsh`: overwrite and add global zsh configurations.
-
-__ISSUES__
-----------
-
-* `$FPATH` does not contains *zplug* related path. If you add a custom plugins
-adding new commands, see the `plugins` function to see how to make them
-avaiable. This is due to a fix for the `su` command.
 
 __USAGE__
 ---------
