@@ -1,4 +1,4 @@
-This is a simple zsh configuration based on zprezto, fzf and grml.
+Customizable zsh configuration using zplug, perzto, grml and fzf.
 
 __CHANGELOG__
 -------------
