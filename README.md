@@ -1,7 +1,15 @@
-This is a simple zsh configuration based on zprezto, fzf and grml.
+Customizable zsh configuration using zplug, perzto, grml and fzf.
+
+__CHANGELOG__
+-------------
+
+* Use [zplug](https://github.com/zplug/zplug) to manage plugins
+* Change *.zshrc.postconf* to *zshrc_custom.zsh*
 
 __INSTALL__
 -----------
+
+Define `$ZDOTDIR` as your convenience.
 
 ```zsh
 cd
@@ -10,51 +18,57 @@ git clone --recursive https://github.com/CharlesGueunet/zsh-config.git $ZDOTDIR
 ln -s ${ZDOTDIR}/.zshrc .
 ```
 
-You can copy your old *~/.zhistory* in the `$ZDOTDIR` folder if you want to keep it
-for history and suggestion.
+You can copy your old *~/.zhistory* in the `$ZDOTDIR` folder if you want to keep
+your old history.
+Then, (re)start zsh.
 
 ### Update
 
+In your shell:
+
 ```zsh
 cd $ZDOTDIR
-git pull --recurse-submodules
-git submodule update --recursive --init
+git pull       # update from git
+plugins update # update plugins
+sz             # re-interpret the .zshrc
 ```
+
 __CUSTOMIZE__
 --------------
 
-### Zprezto
+### Plugins
 
-Zprezto related configurations are done in the `${ZDOTDIR}/.zpreztorc` file. If you want to
-overwrite any of these configuration, just write them in a `${ZDOTDIR}/.zprezorc.postconf` file.
-The documentation related to zprezto (and each module) is available in the
-[wiki](https://github.com/sorin-ionescu/prezto).
+* `$ZDOTDIR/plugins_custom_list.zsh`: add new plugins. For the syntax, see the [zplug website](https://github.com/zplug/zplug) of the `plugins_list.zsh` file.
+* `$ZDOTDIR/plugins_custom_conf.zsh`: overwite and add plugins configuration.
 
-### Zsh
+### Global zsh
 
-Zsh related configuration are on the `${ZDOTDIR}/.zshrc` file.
-You can overwrite/extend this configuration using a `${ZDOTDIR}/.zshrc.postconf` file.
+* `$ZDOTDIR/zshrc_custom.zsh`: overwrite and add global zsh configurations.
 
 __USAGE__
 ---------
 
-### Tricks
+### Travel
 
 When changing directory, `..` will go to the parent directory.
 If you type `...` it will be transformed automatically into `../..` and each `.` you add will
 be transformed into `../` for a fast traversal.
 
+
+`Ctrl-v` will open *vifm* (if installed), a ncurse based file manager based on vim.
+
 ### Commands
 
 ```zsh
-popd # undo a directory change
-cd +N # make N undo directory change
-cdt  # go to a temporary directory
+popd   # undo a directory change
+cd +N  # make N undo directory change
+cdt    # go to a temporary directory
+plugins update # Update plugins
 ```
 
 ### Shortcuts
 
-* FZF : 
+* FZF :
   * `Ctrl-r` fuzzy navigate history
   * `Ctrl-t` fuzzy find a file / folder
   * `Alt-c`  fuzzy change current directory
@@ -62,6 +76,8 @@ cdt  # go to a temporary directory
   * `Ctrl-f` complete next suggested word
   * `Ctrl-y` complete with the whole suggestion
   * `Ctrl-p/n` navigate through last version of this command
+  * `Ctrl-Space` same as tab
+  * `Ctrl-g` substiture in last command
 
 __Copyright__
 -------------
@@ -82,4 +98,3 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
