@@ -30,3 +30,8 @@ if zplug check 'modules/prompt'; then
    # Auto set to 'off' on dumb terminals.
    zstyle ':prezto:module:prompt' theme 'grml'
 fi
+
+if zplug check 'junegunn/fzf-bin'; then
+   # widget size
+   export FZF_DEFAULT_OPTS='--height 40% --border --preview "less -$LINES {}"'
+fi
