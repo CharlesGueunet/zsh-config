@@ -34,4 +34,5 @@ fi
 if zplug check 'junegunn/fzf-bin'; then
    # widget size
    export FZF_DEFAULT_OPTS='--height 40% --border --preview "less -$LINES {}"'
+   export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 fi
