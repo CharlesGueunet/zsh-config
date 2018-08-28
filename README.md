@@ -54,17 +54,20 @@ When changing directory, `..` will go to the parent directory.
 If you type `...` it will be transformed automatically into `../..` and each `.` you add will
 be transformed into `../` for a fast traversal.
 
-
 `Ctrl-v` will open *vifm* (if installed), a ncurse based file manager based on vim.
 
 ### Commands
-
 ```zsh
 popd   # undo a directory change
 cd +N  # make N undo directory change
 cdt    # go to a temporary directory
 plugins update # Update plugins
 ```
+
+### Vim mode
+
+Normal and Insert modes works just like in Vim.
+In Normal mode, `v` let you edit the command inside vim
 
 ### Shortcuts
 
