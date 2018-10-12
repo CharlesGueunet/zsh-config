@@ -81,6 +81,10 @@ In Normal mode, `v` let you edit the command inside vim
   * `Ctrl-p/n` navigate through last version of this command
   * `Ctrl-Space` same as tab
   * `Ctrl-g` substiture in last command
+* Misc
+  * `v` in normal mode to edit inside vim
+  * `Ctrl-q` to enter a command in a temporary promt (recover your input after)
+
 
 __Copyright__
 -------------
