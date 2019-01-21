@@ -36,3 +36,7 @@ if zplug check 'junegunn/fzf-bin'; then
    export FZF_DEFAULT_OPTS='--height 40% --border --preview "less -$LINES {}"'
    export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 fi
+
+if zplug check 'b4b4r07/enhancd'; then
+   export ENHANCD_FILTER=fzy:fzf
+fi
