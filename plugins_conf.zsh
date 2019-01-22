@@ -39,4 +39,5 @@ fi
 
 if zplug check 'b4b4r07/enhancd'; then
    export ENHANCD_FILTER=fzy:fzf
+   export ENHANCD_COMMAND=cdd
 fi
