@@ -13,7 +13,7 @@ fi
 
 if zplug check 'modules/autosuggestions'; then
    zstyle ':prezto:module:autosuggestions' color 'yes'
-   zstyle ':prezto:module:autosuggestions:color' found 'fg=cyan'
+   zstyle ':prezto:module:autosuggestions:color' found 'fg=yellow'
 fi
 
 
