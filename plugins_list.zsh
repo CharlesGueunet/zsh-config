@@ -15,5 +15,6 @@ zplug  'modules/prompt', from:prezto, depth:1, on:'modules/environment'
 
 # other
 zplug 'zsh-users/zsh-syntax-highlighting', depth:1, defer:1
+zplug 'trapd00r/zsh-syntax-highlighting-filetypes', depth:1, defer:1
 zplug 'junegunn/fzf-bin', from:gh-r, as:command, rename-to:fzf
 zplug 'b4b4r07/enhancd', use:init.sh
