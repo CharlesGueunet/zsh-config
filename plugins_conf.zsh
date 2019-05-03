@@ -13,13 +13,13 @@ fi
 
 if zplug check 'modules/autosuggestions'; then
    zstyle ':prezto:module:autosuggestions' color 'yes'
-   zstyle ':prezto:module:autosuggestions:color' found 'fg=yellow'
+   zstyle ':prezto:module:autosuggestions:color' found 'fg=cyan'
 fi
 
 
 if zplug check 'modules/history-substring-search'; then
    # Set the query found color.
-   zstyle ':prezto:module:history-substring-search:color' found 'blue'
+   zstyle ':prezto:module:history-substring-search:color' found 'green'
    # Set the query not found color.
    zstyle ':prezto:module:history-substring-search:color' not-found 'red'
 fi
