@@ -11,5 +11,6 @@ zplug  'modules/history-substring-search', from:prezto, depth:1, on:'modules/env
 
 # other
 zplug 'zsh-users/zsh-syntax-highlighting', depth:1, defer:1
+zplug 'junegunn/fzf-bin', from:gh-r, as:command, rename-to:fzf
 # temporary
 zplug 'CharlesGueunet/zsh-syntax-highlighting-filetypes', depth:1, defer:1
