@@ -10,5 +10,5 @@ zplug  'modules/autosuggestions', from:prezto, depth:1, on:'modules/environment'
 zplug  'modules/history-substring-search', from:prezto, depth:1, on:'modules/environment'
 
 # other
-zplug 'zsh-users/zsh-syntax-highlighting', depth:1, defer:1
+# zplug 'zsh-users/zsh-syntax-highlighting', depth:1, defer:1
 zplug 'junegunn/fzf-bin', from:gh-r, as:command, rename-to:fzf
