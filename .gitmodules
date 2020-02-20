@@ -1,0 +1,3 @@
+[submodule "notify"]
+	path = notify
+	url = https://github.com/marzocchi/zsh-notify
