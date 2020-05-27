@@ -11,7 +11,16 @@ fi
 if [[ -s "${ZDOTDIR:-$HOME}/grml/zshrc" ]]; then
    source "${ZDOTDIR:-$HOME}/grml/zshrc"
    if [ "$HOST" = 'Eru' ]; then
-        zstyle ':prompt:grml:*:items:user' pre '%F{green}'
+        zstyle ':prompt:grml:*:items:host' pre '%F{red}'
+        zstyle ':prompt:grml:*:items:host' post '%F{normal}'
+   fi
+   if [ "$HOST" = 'Manwe' ]; then
+        zstyle ':prompt:grml:*:items:host' pre '%F{cyan}'
+        zstyle ':prompt:grml:*:items:host' post '%F{normal}'
+   fi
+   if [ "$HOST" = 'Dante' ]; then
+        zstyle ':prompt:grml:*:items:host' pre '%F{yellow}'
+        zstyle ':prompt:grml:*:items:host' post '%F{normal}'
    fi
 fi
 
