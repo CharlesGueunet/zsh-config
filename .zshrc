@@ -14,7 +14,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/grml/zshrc" ]]; then
         zstyle ':prompt:grml:*:items:host' pre '%F{red}'
         zstyle ':prompt:grml:*:items:host' post '%F{normal}'
    fi
-   if [ "$HOST" = 'Manwe' ]; then
+   if [ "$HOST" = 'Feanor' ]; then
         zstyle ':prompt:grml:*:items:host' pre '%F{cyan}'
         zstyle ':prompt:grml:*:items:host' post '%F{normal}'
    fi
@@ -185,6 +185,13 @@ else
    alias rebind='setxkbmap -option compose:ralt'
 fi
 
+# Env
+export VISUAL="kak"
+export EDITOR=$VISUAL
+export SVN_EDITOR=$EDITOR
+export GIT_EDITOR=$EDITOR
+export KEYTIMEOUT=1
+
 # Alias post command
 
 alias -g G="| grep"
@@ -197,13 +204,6 @@ alias -g XX="\`xclip -o\`"
 
 alias -s {bib, c, cmake, cpp, h, hpp, md, rb, tex, txt, xml}=$EDITOR
 alias -s {vtu, vti, vtp, vtr, stl}=paraview
-
-# Env
-export VISUAL="vim"
-export EDITOR=$VISUAL
-export SVN_EDITOR=$EDITOR
-export GIT_EDITOR=$EDITOR
-export KEYTIMEOUT=1
 
 # Functions
 
