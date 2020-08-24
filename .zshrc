@@ -324,6 +324,10 @@ bindkey "^o" magic-popd
 
 # Other conf
 
+if [[ -d "${ZDOTDIR}/bin" ]]; then
+  export PATH=$PATH:"${ZDOTDIR}/bin"
+fi
+
 # fuzzy completion with ctrl-r / ctrl-t / alt-c
 if [[ -f "${ZDOTDIR}/fzf_binding.zsh" ]]; then
   source "${ZDOTDIR}/fzf_binding.zsh"
