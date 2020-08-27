@@ -1,0 +1,16 @@
+#!/bin/env sh
+
+BAT=`which bat`
+if [ -x $BAT ]; then
+  VIEWER="$BAT --color always --decorations always --wrap never --pager never -m vtu:xml -m vti:xml -m pvsm:xml -p "
+else
+  VIEWER=`which cat`
+fi
+
+size=`wc -c < "$1"`
+
+if [ $size -le 10000 ]; then
+   $VIEWER $1
+else
+   echo "File too large: $size"
+fi
