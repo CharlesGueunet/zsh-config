@@ -322,6 +322,12 @@ magic-popd () {
 zle -N magic-popd
 bindkey "^o" magic-popd
 
+# tmux autostart
+
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
+
 # Other conf
 
 if [[ -d "${ZDOTDIR}/bin" ]]; then
