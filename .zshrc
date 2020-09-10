@@ -7,6 +7,12 @@ else
    export ZDOTDIR=${HOME}/.config/zsh/
 fi
 
+# tmux autostart
+
+if command -v tmux &> /dev/null && [[ -v DISPLAY ]] && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
+
 # Source grml
 if [[ -s "${ZDOTDIR:-$HOME}/grml/zshrc" ]]; then
    source "${ZDOTDIR:-$HOME}/grml/zshrc"
@@ -321,12 +327,6 @@ magic-popd () {
 }
 zle -N magic-popd
 bindkey "^o" magic-popd
-
-# tmux autostart
-
-if command -v tmux &> /dev/null && [ -v DISPLAY ] && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux
-fi
 
 # Other conf
 
