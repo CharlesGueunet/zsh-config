@@ -7,7 +7,7 @@ else
   VIEWER=`which cat`
 fi
 
-size=`wc -c < "$1"`
+size=`wc -c < "$@"`
 
 if [ $size -le 10000 ]; then
    $VIEWER $1
