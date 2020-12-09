@@ -28,6 +28,10 @@ if [[ -s "${ZDOTDIR:-$HOME}/grml/zshrc" ]]; then
         zstyle ':prompt:grml:*:items:host' pre '%F{yellow}'
         zstyle ':prompt:grml:*:items:host' post '%F{normal}'
    fi
+   if [ "$HOST" = 'Yokai' ]; then
+        zstyle ':prompt:grml:*:items:host' pre '%F{green}'
+        zstyle ':prompt:grml:*:items:host' post '%F{normal}'
+   fi
 fi
 
 # Source notify
@@ -36,6 +40,7 @@ if [[ -v DISPLAY && -s "${ZDOTDIR:-$HOME}/notify/notify.plugin.zsh" ]]; then
    zstyle ':notify:*' error-title "Command failed (#{time_elapsed} seconds)"
    zstyle ':notify:*' success-title "Command success (#{time_elapsed} seconds)"
    zstyle ':notify:*' blacklist-regex 'kak|vim'
+   zstyle ':notify:*' expire-time 2500
 fi
 
 # Plugin manager (Zplug)
@@ -276,6 +281,16 @@ fi
 zle -N vifm-call
 bindkey '^v' vifm-call
 
+pueue-call() {
+if [[ -z $BUFFER ]]; then
+  # interpreted at start, not when leaving
+  BUFFER="clear; pueue status"
+  zle accept-line
+fi
+}
+zle -N pueue-call
+bindkey '^b' pueue-call
+
 substitute-last() {
 # interpreted at start, not when leaving
 BUFFER="!!:gs/"
@@ -286,7 +301,7 @@ bindkey '^g' substitute-last
 
 function su {
    # Fix for zplug, we don't want the new user to share ZPLUG variables
-    command su -l $@
+   command su -l $@
 }
 
 # Facade to zplug
