@@ -163,9 +163,22 @@ function expand-ealias()
 zle -N expand-ealias
 
 # builtin
-alias ls="ls --color -h --group-directories-first -X"
 alias sz="source $HOME/.zshrc"
 alias sue="su; exit"
+
+if type exa >/dev/null 2>&1; then
+  alias ls='exa --group-directories-first --git'
+  alias l='exa -l --all --group-directories-first --git'
+  alias ll='exa -l --all --all --group-directories-first --git'
+  alias lt='exa -T --git-ignore --level=2 --group-directories-first'
+  alias llt='exa -lT --git-ignore --level=2 --group-directories-first'
+  alias lT='exa -T --git-ignore --level=4 --group-directories-first'
+else
+  alias l='ls -lah'
+  alias ll='ls -alF'
+  alias la='ls -A'
+fi
+
 
 # cmake
 ealias b="mkdir build; cd build"
