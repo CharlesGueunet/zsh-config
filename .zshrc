@@ -106,6 +106,11 @@ setopt CLOBBER
 # Job control
 setopt monitor
 
+# automatic cd
+setopt auto_cd
+export DIRSTACKSIZE=8
+setopt autopushd pushdminus pushdsilent pushdtohome
+
 # autocomplete
 
 zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
@@ -170,7 +175,6 @@ zle -N expand-ealias
 # builtin
 alias sz="source $HOME/.zshrc"
 alias sue="su; exit"
-alias ..="cd .."
 
 if type exa >/dev/null 2>&1; then
   alias ls='exa --group-directories-first --git'
