@@ -13,31 +13,15 @@ if command -v tmux &> /dev/null && [[ $UID -ne 0 ]] && [[ -v DISPLAY ]] && [ -n 
   exec tmux
 fi
 
+# Custom bin
+
+if [[ -d "${ZDOTDIR}/bin" ]]; then
+  export PATH=$PATH:"${ZDOTDIR}/bin"
+fi
+
 # Prompt
 
-# starship mode
 eval "$(starship init zsh)"
-
-# # Source grml
-# if [[ -s "${ZDOTDIR:-$HOME}/grml/zshrc" ]]; then
-#    source "${ZDOTDIR:-$HOME}/grml/zshrc"
-#    if [ "$HOST" = 'Eru' ]; then
-#         zstyle ':prompt:grml:*:items:host' pre '%F{red}'
-#         zstyle ':prompt:grml:*:items:host' post '%F{normal}'
-#    fi
-#    if [ "$HOST" = 'Feanor' ]; then
-#         zstyle ':prompt:grml:*:items:host' pre '%F{cyan}'
-#         zstyle ':prompt:grml:*:items:host' post '%F{normal}'
-#    fi
-#    if [ "$HOST" = 'Dante' ]; then
-#         zstyle ':prompt:grml:*:items:host' pre '%F{yellow}'
-#         zstyle ':prompt:grml:*:items:host' post '%F{normal}'
-#    fi
-#    if [ "$HOST" = 'Yokai' ]; then
-#         zstyle ':prompt:grml:*:items:host' pre '%F{green}'
-#         zstyle ':prompt:grml:*:items:host' post '%F{normal}'
-#    fi
-# fi
 
 # Source notify
 if [[ -v DISPLAY && -s "${ZDOTDIR:-$HOME}/notify/notify.plugin.zsh" ]]; then
@@ -351,10 +335,6 @@ zle -N magic-popd
 bindkey "^o" magic-popd
 
 # Other conf
-
-if [[ -d "${ZDOTDIR}/bin" ]]; then
-  export PATH=$PATH:"${ZDOTDIR}/bin"
-fi
 
 # fuzzy completion with ctrl-r / ctrl-t / alt-c
 if [[ -f "${ZDOTDIR}/fzf_binding.zsh" ]]; then
