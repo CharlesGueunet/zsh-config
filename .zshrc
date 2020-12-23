@@ -13,26 +13,31 @@ if command -v tmux &> /dev/null && [[ $UID -ne 0 ]] && [[ -v DISPLAY ]] && [ -n 
   exec tmux
 fi
 
-# Source grml
-if [[ -s "${ZDOTDIR:-$HOME}/grml/zshrc" ]]; then
-   source "${ZDOTDIR:-$HOME}/grml/zshrc"
-   if [ "$HOST" = 'Eru' ]; then
-        zstyle ':prompt:grml:*:items:host' pre '%F{red}'
-        zstyle ':prompt:grml:*:items:host' post '%F{normal}'
-   fi
-   if [ "$HOST" = 'Feanor' ]; then
-        zstyle ':prompt:grml:*:items:host' pre '%F{cyan}'
-        zstyle ':prompt:grml:*:items:host' post '%F{normal}'
-   fi
-   if [ "$HOST" = 'Dante' ]; then
-        zstyle ':prompt:grml:*:items:host' pre '%F{yellow}'
-        zstyle ':prompt:grml:*:items:host' post '%F{normal}'
-   fi
-   if [ "$HOST" = 'Yokai' ]; then
-        zstyle ':prompt:grml:*:items:host' pre '%F{green}'
-        zstyle ':prompt:grml:*:items:host' post '%F{normal}'
-   fi
-fi
+# Prompt
+
+# starship mode
+eval "$(starship init zsh)"
+
+# # Source grml
+# if [[ -s "${ZDOTDIR:-$HOME}/grml/zshrc" ]]; then
+#    source "${ZDOTDIR:-$HOME}/grml/zshrc"
+#    if [ "$HOST" = 'Eru' ]; then
+#         zstyle ':prompt:grml:*:items:host' pre '%F{red}'
+#         zstyle ':prompt:grml:*:items:host' post '%F{normal}'
+#    fi
+#    if [ "$HOST" = 'Feanor' ]; then
+#         zstyle ':prompt:grml:*:items:host' pre '%F{cyan}'
+#         zstyle ':prompt:grml:*:items:host' post '%F{normal}'
+#    fi
+#    if [ "$HOST" = 'Dante' ]; then
+#         zstyle ':prompt:grml:*:items:host' pre '%F{yellow}'
+#         zstyle ':prompt:grml:*:items:host' post '%F{normal}'
+#    fi
+#    if [ "$HOST" = 'Yokai' ]; then
+#         zstyle ':prompt:grml:*:items:host' pre '%F{green}'
+#         zstyle ':prompt:grml:*:items:host' post '%F{normal}'
+#    fi
+# fi
 
 # Source notify
 if [[ -v DISPLAY && -s "${ZDOTDIR:-$HOME}/notify/notify.plugin.zsh" ]]; then
@@ -165,10 +170,11 @@ zle -N expand-ealias
 # builtin
 alias sz="source $HOME/.zshrc"
 alias sue="su; exit"
+alias ..="cd .."
 
 if type exa >/dev/null 2>&1; then
   alias ls='exa --group-directories-first --git'
-  alias l='exa -l --all --group-directories-first --git'
+  alias l='exa -l --group-directories-first --git'
   alias ll='exa -l --all --all --group-directories-first --git'
   alias lt='exa -T --git-ignore --level=2 --group-directories-first'
   alias llt='exa -lT --git-ignore --level=2 --group-directories-first'
@@ -194,6 +200,7 @@ alias -g MP="-- -j 6 -l 5"
 
 # editor
 alias k="kak"
+alias :q="exit"
 
 # git
 ealias gitgraph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
@@ -254,23 +261,6 @@ bindkey '^z' fancy-ctrl-z
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
-
-# vi indicator
-precmd() {
-   RPROMPT=""
-   print ""
-}
-zle-keymap-select() {
-RPROMPT=""
-[[ $KEYMAP = vicmd ]] && RPROMPT='[%F{yellow}NORMAL%F{reset}]'
-() { return $__prompt_status }
-zle reset-prompt
-}
-zle-line-init() {
-typeset -g __prompt_status="$?"
-}
-zle -N zle-keymap-select
-zle -N zle-line-init
 
 # file manager
 vicd()
@@ -375,5 +365,4 @@ fi
 if [[ -f "${ZDOTDIR}/zshrc_custom.zsh" ]]; then
   source "${ZDOTDIR}/zshrc_custom.zsh"
 fi
-
 
