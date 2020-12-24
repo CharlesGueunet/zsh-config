@@ -8,22 +8,15 @@ else
 fi
 
 # tmux autostart
+# ##############
 
 if command -v tmux &> /dev/null && [[ $UID -ne 0 ]] && [[ -v DISPLAY ]] && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux
 fi
 
-# Custom bin
+# notify
+# ######
 
-if [[ -d "${ZDOTDIR}/bin" ]]; then
-  export PATH=$PATH:"${ZDOTDIR}/bin"
-fi
-
-# Prompt
-
-eval "$(starship init zsh)"
-
-# Source notify
 if [[ -v DISPLAY && -s "${ZDOTDIR:-$HOME}/notify/notify.plugin.zsh" ]]; then
    source "${ZDOTDIR:-$HOME}/notify/notify.plugin.zsh"
    zstyle ':notify:*' error-title "Command failed (#{time_elapsed} seconds)"
@@ -32,7 +25,10 @@ if [[ -v DISPLAY && -s "${ZDOTDIR:-$HOME}/notify/notify.plugin.zsh" ]]; then
    zstyle ':notify:*' expire-time 2500
 fi
 
-# Plugin manager (Zplug)
+# ZPlug
+# #####
+
+# download and source
 export ZPLUG_HOME=$ZDOTDIR/zplug/
 if [[ ! -a ${ZPLUG_HOME} ]]; then
    git clone  --recursive --depth 1 https://github.com/zplug/zplug $ZPLUG_HOME
@@ -62,13 +58,46 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load
 
-# Global setting
+# Custom PATH
+# ###########
+
+if [[ -d "${ZDOTDIR}/bin" ]]; then
+  export PATH=$PATH:"${ZDOTDIR}/bin"
+fi
+
+# Vi mode
+# #######
+
+# binding
+bindkey -v
+bindkey -M viins "$key_info[Control]P" up-line-or-search
+bindkey -M viins "$key_info[Control]N" down-line-or-search
+bindkey -M viins "$key_info[Control]R" history-incremental-search-backward
+bindkey -M viins "$key_info[Up]" up-line-or-search
+bindkey -M viins "$key_info[Down]" down-line-or-search
+if zplug check 'modules/autosuggestions'; then
+    bindkey -M viins "$key_info[Control]Y" vi-end-of-line
+    bindkey -M viins "$key_info[Control]F" vi-forward-word
+fi
+
+# edit
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
+# prompt
+# #####
+
+eval "$(starship init zsh)"
+
+# Global settings
+# ###############
 
 # cdr allows to come back to a previous visited directory
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 
-# Setopt
+# OPTIONS
 
 # If I could disable Ctrl-s completely I would!
 setopt NO_FLOW_CONTROL
@@ -122,19 +151,8 @@ setopt HIST_REDUCE_BLANKS
 # Tab -> complete or next completion
 bindkey '^i' expand-or-complete-prefix
 
-# vi mode
-bindkey -v
-bindkey -M viins "$key_info[Control]P" up-line-or-search
-bindkey -M viins "$key_info[Control]N" down-line-or-search
-bindkey -M viins "$key_info[Control]R" history-incremental-search-backward
-bindkey -M viins "$key_info[Up]" up-line-or-search
-bindkey -M viins "$key_info[Down]" down-line-or-search
-if zplug check 'modules/autosuggestions'; then
-    bindkey -M viins "$key_info[Control]Y" vi-end-of-line
-    bindkey -M viins "$key_info[Control]F" vi-forward-word
-fi
-
-# Alias
+# Aliases
+# #######
 
 typeset -a ealiases
 ealiases=()
@@ -224,7 +242,8 @@ alias -g XX="\`xclip -o\`"
 alias -s {bib, c, cmake, cpp, h, hpp, md, rb, tex, txt, xml}=$EDITOR
 alias -s {vtu, vti, vtp, vtr, stl}=paraview
 
-# Functions
+# Functions (binded to keys)
+# #########
 
 # man inside vim with completion
 vman () {
@@ -245,12 +264,7 @@ fi
 zle -N fancy-ctrl-z
 bindkey '^z' fancy-ctrl-z
 
-#vim edit
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
-
-# file manager
+# ctrl v file manager
 vicd()
 {
    # from https://wiki.vifm.info/index.php?title=How_to_set_shell_working_directory_after_leaving_Vifm
@@ -272,6 +286,7 @@ fi
 zle -N vifm-call
 bindkey '^v' vifm-call
 
+# ctrl b pueue status
 pueue-call() {
 if [[ -z $BUFFER ]]; then
   # interpreted at start, not when leaving
@@ -282,14 +297,16 @@ fi
 zle -N pueue-call
 bindkey '^b' pueue-call
 
+# ctrl g command replace
 substitute-last() {
-# interpreted at start, not when leaving
-BUFFER="!!:gs/"
-CURSOR=6
+  # interpreted at start, not when leaving
+  BUFFER="!!:gs/"
+  CURSOR=6
 }
 zle -N substitute-last
 bindkey '^g' substitute-last
 
+# fix for separate env
 function su {
    # Fix for zplug, we don't want the new user to share ZPLUG variables
    command su -l $@
@@ -324,7 +341,7 @@ magic-enter () {
 zle -N magic-enter
 bindkey "^m" magic-enter
 
-# Ctrl o: previous vim like
+# Ctrl o: previous vim/kak like
 magic-popd () {
    if [[ -z $BUFFER ]]; then
       popd
@@ -334,7 +351,8 @@ magic-popd () {
 zle -N magic-popd
 bindkey "^o" magic-popd
 
-# Other conf
+# Additional conf
+# ###############
 
 # fuzzy completion with ctrl-r / ctrl-t / alt-c
 if [[ -f "${ZDOTDIR}/fzf_binding.zsh" ]]; then
@@ -349,4 +367,8 @@ fi
 if [[ -f "${ZDOTDIR}/zshrc_custom.zsh" ]]; then
   source "${ZDOTDIR}/zshrc_custom.zsh"
 fi
+
+# tab multiplexer configuration: https://github.com/austinjones/tab-rs/
+source "/home/charles/.local/share/tab/completion/zsh-history.zsh"
+# end tab configuration
 
