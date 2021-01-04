@@ -368,7 +368,3 @@ if [[ -f "${ZDOTDIR}/zshrc_custom.zsh" ]]; then
   source "${ZDOTDIR}/zshrc_custom.zsh"
 fi
 
-# tab multiplexer configuration: https://github.com/austinjones/tab-rs/
-source "/home/charles/.local/share/tab/completion/zsh-history.zsh"
-# end tab configuration
-
