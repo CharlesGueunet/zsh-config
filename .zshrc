@@ -198,7 +198,10 @@ ealias rb="rm -rf build/"
 ealias nb="rb; b"
 ealias rmcmake="rm -rf CMakeFiles Makefile cmake_install.cmake CMakeCache.txt build.ninja rules.ninja"
 
-alias -g ECC="-DCMAKE_EXPORT_COMPILE_COMMANDS=1"
+alias -g DD="-C ~/.config/base.cmake"
+alias -g NM="-G 'Ninja Multi-Config'"
+alias -g CB="--config Debug"
+alias -g CR="--config Release"
 alias -g BB="--build build"
 alias -g BP="--build ."
 alias -g TI="--target install"
@@ -214,6 +217,9 @@ ealias gitgraph="git log --graph --abbrev-commit --decorate --format=format:'%C(
 # tmux
 ealias t="tmux -2"
 ealias ta="tmux -2 a"
+function tmux-kill-unnamed {
+  tmux ls -F'#{session_name}'|egrep '^[0-9]+$'|xargs -I% tmux kill-session -t "=%"
+}
 
 # Keyboard qwerty with accent
 if [[ -f "${HOME}/.Xmodmap" ]]; then
