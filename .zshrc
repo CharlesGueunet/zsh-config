@@ -179,12 +179,11 @@ alias sz="source $HOME/.zshrc"
 alias sue="su; exit"
 
 if type exa >/dev/null 2>&1; then
-  alias ls='exa --group-directories-first --git'
-  alias l='exa -l --group-directories-first --git'
-  alias ll='exa -l --all --all --group-directories-first --git'
+  alias ls='exa --group-directories-first'
+  alias l='exa -lh --group-directories-first'
+  alias ll='exa -l --group-directories-first --all'
   alias lt='exa -T --git-ignore --level=2 --group-directories-first'
-  alias llt='exa -lT --git-ignore --level=2 --group-directories-first'
-  alias lT='exa -T --git-ignore --level=4 --group-directories-first'
+  alias lg='exa -l --all --group-directories-first --git'
 else
   alias l='ls -lah'
   alias ll='ls -alF'
@@ -193,12 +192,12 @@ fi
 
 
 # cmake
-ealias b="mkdir build; cd build"
+ealias b="mkdir build"
+ealias cb="cd build"
 ealias rb="rm -rf build/"
-ealias nb="rb; b"
 ealias rmcmake="rm -rf CMakeFiles Makefile cmake_install.cmake CMakeCache.txt build.ninja rules.ninja"
 
-alias -g DD="-C ~/.config/base.cmake"
+alias -g DD="-C ~/.config/cmake/base.cmake"
 alias -g NM="-G 'Ninja Multi-Config'"
 alias -g CB="--config Debug"
 alias -g CR="--config Release"
@@ -208,7 +207,7 @@ alias -g TI="--target install"
 alias -g MP="-- -j 6 -l 5"
 
 # editor
-alias k="kak"
+alias kk="kak"
 alias :q="exit"
 
 # git
