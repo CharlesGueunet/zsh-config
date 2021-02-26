@@ -231,7 +231,7 @@ fi
 export VISUAL="kak"
 export EDITOR=$VISUAL
 export SVN_EDITOR=$EDITOR
-export GIT_EDITOR=$EDITOR
+export GIT_EDITOR=vim
 export KEYTIMEOUT=1
 
 # Alias post command
@@ -241,8 +241,8 @@ alias -g L="| less"
 alias -g T="| tee -a "
 alias -g S="| sed"
 alias -g V="| vim - "
-alias -g X="| xclip"
-alias -g XX="\`xclip -o\`"
+alias -g X="| xsel --clipboard "
+alias -g XX="\`xsel --clipboard  --output\`"
 
 alias -s {bib, c, cmake, cpp, h, hpp, md, rb, tex, txt, xml}=$EDITOR
 alias -s {vtu, vti, vtp, vtr, stl}=paraview
