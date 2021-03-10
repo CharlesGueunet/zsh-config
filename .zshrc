@@ -207,8 +207,18 @@ alias -g TI="--target install"
 alias -g MP="-- -j 6 -l 5"
 
 # editor
-alias kk="kak"
+alias k='kcr edit'
+alias K='kcr-fzf-shell'
+alias ks='kcr shell --session'
+alias kl='kcr list'
+alias a='kcr attach'
+alias :='kcr send'
+alias :cat='kcr cat --raw'
 alias :q="exit"
+
+alias val='kcr get-expansion val'
+alias opt='kcr get-expansion opt'
+alias reg='kcr get-expansion reg'
 
 # git
 ealias gitgraph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
@@ -228,7 +238,7 @@ else
 fi
 
 # Env
-export VISUAL="kak"
+export VISUAL="kcr edit"
 export EDITOR=$VISUAL
 export SVN_EDITOR=$EDITOR
 export GIT_EDITOR=vim
