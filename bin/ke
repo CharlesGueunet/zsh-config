@@ -1,0 +1,14 @@
+#!/bin/sh
+
+client=`kcr list | jq -c ".[] | select( .session == \"$KAKOUNE_SESSION\" )" | jq -c '.client'`
+
+echo "cli: $client"
+
+if [ -z "$client" ] || [ "$client" = "null" ]; then
+  for f in $@; do
+    kak $f
+  done
+else
+  echo "session"
+  kcr -s $KAKOUNE_SESSION edit $@
+fi
