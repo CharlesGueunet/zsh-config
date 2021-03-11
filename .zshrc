@@ -239,7 +239,7 @@ else
 fi
 
 # Env
-export VISUAL="kcr edit"
+export VISUAL="ke"
 export EDITOR=$VISUAL
 export SVN_EDITOR=$EDITOR
 export GIT_EDITOR=vim
