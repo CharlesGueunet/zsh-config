@@ -1,9 +1,8 @@
 #!/bin/sh
 
 if [ -v KAKOUNE_SESSION ]; then
-  client=`kcr list | jq -c ".[] | select( .session == \"$KAKOUNE_SESSION\" )" | jq -c '.client'`
   kcr -s $KAKOUNE_SESSION edit $@
-  if [ "$client" = "null"  ]; then
+  if [ ! -v KAKOUNE_CLIENT ]; then
     # spawn editor if no view for this session
     kcr attach
   fi
