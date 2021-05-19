@@ -1,4 +1,4 @@
 #!/bin/env sh
 
 for i in $@; do :; done
-kak $i
+kak "$i"
