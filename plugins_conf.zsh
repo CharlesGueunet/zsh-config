@@ -13,6 +13,10 @@ fi
 if zplug check 'modules/autosuggestions'; then
    zstyle ':prezto:module:autosuggestions' color 'yes'
    zstyle ':prezto:module:autosuggestions:color' found 'fg=cyan'
+ fi
+
+if zplug check 'modules/autosuggestions'; then
+  export HISTFILE=${ZDOTDIR}/.zsh_history
 fi
 
 if zplug check 'modules/history-substring-search'; then
