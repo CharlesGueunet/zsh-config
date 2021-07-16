@@ -132,7 +132,9 @@ zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
 zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
 # fuzzy completion when mistype
-zstyle ':completion:*' completer _complete _match _approximate
+bindkey "^Xa" _expand_alias
+zstyle ':completion:*' completer _expand_alias _complete _match _approximate
+zstyle ':completion:*' regular true
 zstyle ':completion:*:match:*' original only
 zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
@@ -216,6 +218,7 @@ alias a='kcr attach'
 alias :='kcr send'
 alias :cat='kcr cat --raw'
 alias :q="exit"
+alias :e="ke"
 
 alias val='kcr get-expansion val'
 alias opt='kcr get-expansion opt'
