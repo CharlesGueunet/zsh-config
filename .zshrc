@@ -199,9 +199,9 @@ ealias cb="cd build"
 ealias rb="rm -rf build/"
 ealias rmcmake="rm -rf CMakeFiles Makefile cmake_install.cmake CMakeCache.txt build.ninja rules.ninja"
 
-alias -g DD="-C ~/.config/cmake/base.cmake"
+alias -g CC="-C ~/.config/cmake/base.cmake"
 alias -g NM="-G 'Ninja Multi-Config'"
-alias -g CB="--config Debug"
+alias -g CD="--config Debug"
 alias -g CR="--config Release"
 alias -g BB="--build build"
 alias -g BP="--build ."
@@ -250,13 +250,14 @@ export KEYTIMEOUT=1
 
 # Alias post command
 
-alias -g G="| grep"
-alias -g L="| less"
+alias -g G="| grep "
+alias -g L="| less "
 alias -g T="| tee -a "
-alias -g S="| sed"
+alias -g S="| sed "
 alias -g V="| vim - "
-alias -g X="| xsel --clipboard "
-alias -g XX="\`xsel --clipboard  --output\`"
+alias -g XC="| xsel --clipboard "
+alias -g XV="\`xsel --clipboard  --output\`"
+alias -g X="| xargs "
 
 alias -s {bib, c, cmake, cpp, h, hpp, md, rb, tex, txt, xml}=$EDITOR
 alias -s {vtu, vti, vtp, vtr, stl}=paraview
