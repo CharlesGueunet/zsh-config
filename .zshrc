@@ -178,7 +178,6 @@ zle -N expand-ealias
 
 # builtin
 alias sz="source $HOME/.zshrc"
-alias sue="su; exit"
 
 if type exa >/dev/null 2>&1; then
   alias ls='exa --group-directories-first'
@@ -330,6 +329,11 @@ bindkey '^g' substitute-last
 function su {
    # Fix for zplug, we don't want the new user to share ZPLUG variables
    command su -l $@
+}
+
+function mkcd {
+   mkdir -p -- "$1"
+   cd -P -- "$1"
 }
 
 # Facade to zplug
