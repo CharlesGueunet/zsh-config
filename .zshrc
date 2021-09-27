@@ -28,12 +28,45 @@ fi
 # ZPlug
 # #####
 
-# download and source
-export ZPLUG_HOME=$ZDOTDIR/zplug/
-if [[ ! -a ${ZPLUG_HOME} ]]; then
-   git clone  --recursive --depth 1 https://github.com/zplug/zplug $ZPLUG_HOME
+# # download and source
+# export ZPLUG_HOME=$ZDOTDIR/zplug/
+# if [[ ! -a ${ZPLUG_HOME} ]]; then
+#    git clone  --recursive --depth 1 https://github.com/zplug/zplug $ZPLUG_HOME
+# fi
+# source ${ZPLUG_HOME}/init.zsh
+
+# # Plugins list
+# source ${ZDOTDIR}/plugins_list.zsh
+# if [[ -a ${ZDOTDIR}/plugins_custom_list.zsh ]]; then
+#    source ${ZDOTDIR}/plugins_custom_list.zsh
+# fi
+
+# # Plugins configuration
+# source ${ZDOTDIR}/plugins_conf.zsh
+# if [[ -a ${ZDOTDIR}/plugins_custom_conf.zsh ]]; then
+#    source ${ZDOTDIR}/plugins_custom_conf.zsh
+# fi
+
+# # Install plugins if there are plugins that have not been installed
+# if ! zplug check --verbose; then
+#    printf "Install? [y/N]: "
+#    if read -q; then
+#       echo; zplug install
+#    fi
+# fi
+
+# # Then, source plugins and add commands to $PATH
+# zplug load
+
+# ZComet
+# ######
+
+# Clone zcomet if necessary
+if [[ ! -f ${ZDOTDIR}/.zcomet/bin/zcomet.zsh ]]; then
+  command git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR}/.zcomet/bin
 fi
-source ${ZPLUG_HOME}/init.zsh
+
+source ${ZDOTDIR}/.zcomet/bin/zcomet.zsh
 
 # Plugins list
 source ${ZDOTDIR}/plugins_list.zsh
@@ -41,22 +74,15 @@ if [[ -a ${ZDOTDIR}/plugins_custom_list.zsh ]]; then
    source ${ZDOTDIR}/plugins_custom_list.zsh
 fi
 
-# Plugins configuration
+# Run compinit and compile its cache
+zcomet compinit
+
+# # Plugins configuration
 source ${ZDOTDIR}/plugins_conf.zsh
 if [[ -a ${ZDOTDIR}/plugins_custom_conf.zsh ]]; then
    source ${ZDOTDIR}/plugins_custom_conf.zsh
 fi
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-   printf "Install? [y/N]: "
-   if read -q; then
-      echo; zplug install
-   fi
-fi
-
-# Then, source plugins and add commands to $PATH
-zplug load
 
 # Custom PATH
 # ###########
@@ -73,12 +99,6 @@ bindkey -v
 bindkey -M viins "$key_info[Control]P" up-line-or-search
 bindkey -M viins "$key_info[Control]N" down-line-or-search
 bindkey -M viins "$key_info[Control]R" history-incremental-search-backward
-bindkey -M viins "$key_info[Up]" up-line-or-search
-bindkey -M viins "$key_info[Down]" down-line-or-search
-if zplug check 'modules/autosuggestions'; then
-    bindkey -M viins "$key_info[Control]Y" vi-end-of-line
-    bindkey -M viins "$key_info[Control]F" vi-forward-word
-fi
 
 # edit
 autoload -U edit-command-line
@@ -125,7 +145,6 @@ export DIRSTACKSIZE=8
 setopt autopushd pushdminus pushdsilent pushdtohome
 
 # autocomplete
-
 zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
 zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
 zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
@@ -139,7 +158,6 @@ zstyle ':completion:*:match:*' original only
 zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
 # history
-
 setopt APPEND_HISTORY
 
 # ignore command starting with a space in history
@@ -152,6 +170,23 @@ setopt HIST_REDUCE_BLANKS
 
 # Tab -> complete or next completion
 bindkey '^i' expand-or-complete-prefix
+
+# Multiple dot to up
+if is-at-least 5.0.0 && [[ ! $UID -eq 0 ]]; then
+  ## http://www.zsh.org/mla/users/2010/msg00769.html
+  function rationalise-dot() {
+    local MATCH # keep the regex match from leaking to the environment
+    if [[ $LBUFFER =~ '(^|/| |      |'$'\n''|\||;|&)\.\.$' && ! $LBUFFER = p4* ]]; then
+        #if [[ ! $LBUFFER = p4* && $LBUFFER = *.. ]]; then
+        LBUFFER+=/..
+    else
+        zle self-insert
+    fi
+  }
+  zle -N rationalise-dot
+  bindkey . rationalise-dot
+  bindkey -M isearch . self-insert
+fi
 
 # Aliases
 # #######
@@ -325,20 +360,9 @@ substitute-last() {
 zle -N substitute-last
 bindkey '^g' substitute-last
 
-# fix for separate env
-function su {
-   # Fix for zplug, we don't want the new user to share ZPLUG variables
-   command su -l $@
-}
-
 function mkcd {
    mkdir -p -- "$1"
    cd -P -- "$1"
-}
-
-# Facade to zplug
-function plugins(){
-   zplug $@
 }
 
 # mv in folder and cd when it is done
