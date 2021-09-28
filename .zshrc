@@ -63,6 +63,8 @@ fi
 
 bindkey -v
 bindkey -M vicmd v edit-command-line
+bindkey -M viins "^P" up-line-or-search
+bindkey -M viins "^N" down-line-or-search
 
 # edit
 autoload -U edit-command-line
@@ -122,7 +124,12 @@ zstyle ':completion:*:match:*' original only
 zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
 # history
+HISTFILE=${ZDOTDIR}/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+setopt appendhistory
 setopt APPEND_HISTORY
+setopt SHARE_HISTORY
 
 # ignore command starting with a space in history
 setopt HIST_IGNORE_SPACE
