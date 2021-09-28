@@ -25,39 +25,6 @@ if [[ -v DISPLAY && -s "${ZDOTDIR:-$HOME}/notify/notify.plugin.zsh" ]]; then
    zstyle ':notify:*' expire-time 2500
 fi
 
-# ZPlug
-# #####
-
-# # download and source
-# export ZPLUG_HOME=$ZDOTDIR/zplug/
-# if [[ ! -a ${ZPLUG_HOME} ]]; then
-#    git clone  --recursive --depth 1 https://github.com/zplug/zplug $ZPLUG_HOME
-# fi
-# source ${ZPLUG_HOME}/init.zsh
-
-# # Plugins list
-# source ${ZDOTDIR}/plugins_list.zsh
-# if [[ -a ${ZDOTDIR}/plugins_custom_list.zsh ]]; then
-#    source ${ZDOTDIR}/plugins_custom_list.zsh
-# fi
-
-# # Plugins configuration
-# source ${ZDOTDIR}/plugins_conf.zsh
-# if [[ -a ${ZDOTDIR}/plugins_custom_conf.zsh ]]; then
-#    source ${ZDOTDIR}/plugins_custom_conf.zsh
-# fi
-
-# # Install plugins if there are plugins that have not been installed
-# if ! zplug check --verbose; then
-#    printf "Install? [y/N]: "
-#    if read -q; then
-#       echo; zplug install
-#    fi
-# fi
-
-# # Then, source plugins and add commands to $PATH
-# zplug load
-
 # ZComet
 # ######
 
@@ -94,11 +61,8 @@ fi
 # Vi mode
 # #######
 
-# binding
 bindkey -v
-bindkey -M viins "$key_info[Control]P" up-line-or-search
-bindkey -M viins "$key_info[Control]N" down-line-or-search
-bindkey -M viins "$key_info[Control]R" history-incremental-search-backward
+bindkey -M vicmd v edit-command-line
 
 # edit
 autoload -U edit-command-line
