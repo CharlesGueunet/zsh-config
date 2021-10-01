@@ -358,7 +358,7 @@ magic-enter () {
    fi
 }
 zle -N magic-enter
-bindkey "^m" magic-enter
+# bindkey "^m" magic-enter
 
 # Ctrl o: previous vim/kak like
 magic-popd () {
