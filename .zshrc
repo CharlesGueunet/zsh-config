@@ -349,16 +349,20 @@ function mvc(){
   fi
 }
 
-# Empty command = clear
-magic-enter () {
-   if [[ -z $BUFFER ]]; then
-      zle clear-screen
-   else
-      zle accept-line
-   fi
+# clear on enter
+magic-enter() {
+  if [[ -n "$BUFFER" || "$CONTEXT" != start ]]; then
+    return
+  fi
+  BUFFER="clear"
 }
-zle -N magic-enter
-# bindkey "^m" magic-enter
+
+zle -N _magic-enter_orig_accept-line "${widgets[accept-line]#user:}"
+function _magic-enter_accept-line() {
+  magic-enter
+  zle _magic-enter_orig_accept-line -- "$@"
+}
+zle -N accept-line _magic-enter_accept-line
 
 # Ctrl o: previous vim/kak like
 magic-popd () {
