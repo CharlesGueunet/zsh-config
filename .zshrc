@@ -21,7 +21,7 @@ if [[ -v DISPLAY && -s "${ZDOTDIR:-$HOME}/notify/notify.plugin.zsh" ]]; then
    source "${ZDOTDIR:-$HOME}/notify/notify.plugin.zsh"
    zstyle ':notify:*' error-title "Command failed (#{time_elapsed} seconds)"
    zstyle ':notify:*' success-title "Command success (#{time_elapsed} seconds)"
-   zstyle ':notify:*' blacklist-regex 'kak|vim'
+   zstyle ':notify:*' blacklist-regex 'kak|vim|kks'
    zstyle ':notify:*' expire-time 2500
 fi
 
@@ -214,20 +214,12 @@ alias -g TI="--target install"
 alias -g MP="-- -j 6 -l 5"
 
 # editor
-alias k='kcr edit'
-alias K='kcr-fzf-shell'
-alias ks='kcr shell --session'
-alias kl='kcr list'
-alias Kq='kcr-fzf-shell -- kcr send kill'
-alias a='kcr attach'
-alias :='kcr send'
-alias :cat='kcr cat --raw'
+alias k='kks edit'
+alias ks='. ${ZDOTDIR}/bin/kks-new'
+alias kd='. ${ZDOTDIR}/bin/kks-detach'
+alias kss='eval $(kks-switch)'
 alias :q="exit"
-alias :e="ke"
-
-alias val='kcr get-expansion val'
-alias opt='kcr get-expansion opt'
-alias reg='kcr get-expansion reg'
+alias a="kks a"
 
 # git
 ealias gitgraph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"

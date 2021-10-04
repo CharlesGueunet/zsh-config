@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export KKS_SESSION="$@"
+kks new "$KKS_SESSION"

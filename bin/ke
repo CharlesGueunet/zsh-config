@@ -1,10 +1,10 @@
 #!/bin/sh
 
-if [ -v KAKOUNE_SESSION ]; then
-  kcr -s $KAKOUNE_SESSION edit $@
-  if [ ! -v KAKOUNE_CLIENT ]; then
+if [ -v KKS_SESSION ]; then
+  kcr -s $KKS_SESSION edit $@
+  if [ ! -v KKS_CLIENT ]; then
     # spawn editor if no view for this session
-    kcr attach
+    kks attach
   fi
 else
   # not attached to session
