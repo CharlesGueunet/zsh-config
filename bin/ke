@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ -v KKS_SESSION ]; then
-  kcr -s $KKS_SESSION edit $@
+  kks edit -s $KKS_SESSION $@
   if [ ! -v KKS_CLIENT ]; then
     # spawn editor if no view for this session
     kks attach
