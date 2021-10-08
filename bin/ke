@@ -2,10 +2,10 @@
 
 if [ -v KKS_SESSION ]; then
   kks edit -s $KKS_SESSION $@
-  if [ ! -v KKS_CLIENT ]; then
-    # spawn editor if no view for this session
-    kks attach
-  fi
+  # if [ ! -v KKS_CLIENT ]; then
+  #   # spawn editor if no view for this session
+  #   kks attach
+  # fi
 else
   # not attached to session
   for f in $@; do

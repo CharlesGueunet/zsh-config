@@ -21,7 +21,6 @@ if [[ -v DISPLAY && -s "${ZDOTDIR:-$HOME}/notify/notify.plugin.zsh" ]]; then
    source "${ZDOTDIR:-$HOME}/notify/notify.plugin.zsh"
    zstyle ':notify:*' error-title "Command failed (#{time_elapsed} seconds)"
    zstyle ':notify:*' success-title "Command success (#{time_elapsed} seconds)"
-   zstyle ':notify:*' blacklist-regex 'kak|vim|kks'
    zstyle ':notify:*' expire-time 2500
 fi
 
@@ -342,19 +341,21 @@ function mvc(){
 }
 
 # clear on enter
-magic-enter() {
-  if [[ -n "$BUFFER" || "$CONTEXT" != start ]]; then
-    return
-  fi
-  BUFFER="clear"
-}
+if ! typeset -f magic-enter > /dev/null; then
+  magic-enter() {
+    if [[ -n "$BUFFER" || "$CONTEXT" != start ]]; then
+      return
+    fi
+    BUFFER="clear"
+  }
 
-zle -N _magic-enter_orig_accept-line "${widgets[accept-line]#user:}"
-function _magic-enter_accept-line() {
-  magic-enter
-  zle _magic-enter_orig_accept-line -- "$@"
-}
-zle -N accept-line _magic-enter_accept-line
+  zle -N _magic-enter_orig_accept-line "${widgets[accept-line]#user:}"
+  function _magic-enter_accept-line() {
+    magic-enter
+    zle _magic-enter_orig_accept-line -- "$@"
+  }
+  zle -N accept-line _magic-enter_accept-line
+fi
 
 # Ctrl o: previous vim/kak like
 magic-popd () {
