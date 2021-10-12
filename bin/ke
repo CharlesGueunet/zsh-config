@@ -1,7 +1,12 @@
 #!/bin/sh
 
+#fix for vifm
+if [[ "$1" == "-f" ]]; then
+  shift
+fi
+
 if [ -v KKS_SESSION ]; then
-  kks edit -s $KKS_SESSION $@
+  kks edit -s $KKS_SESSION "$@"
   # if [ ! -v KKS_CLIENT ]; then
   #   # spawn editor if no view for this session
   #   kks attach
@@ -9,6 +14,6 @@ if [ -v KKS_SESSION ]; then
 else
   # not attached to session
   for f in $@; do
-    kak $f
+    kak "$f"
   done
 fi
