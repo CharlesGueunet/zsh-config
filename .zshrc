@@ -126,6 +126,7 @@ zstyle ':completion:*:approximate:*' max-errors 1 numeric
 HISTFILE=${ZDOTDIR}/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
+setopt histignoredups
 setopt appendhistory
 setopt APPEND_HISTORY
 setopt SHARE_HISTORY
