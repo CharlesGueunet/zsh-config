@@ -124,12 +124,10 @@ zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
 # history
 HISTFILE=${ZDOTDIR}/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 setopt histignoredups
 setopt appendhistory
-setopt APPEND_HISTORY
-setopt SHARE_HISTORY
 
 # ignore command starting with a space in history
 setopt HIST_IGNORE_SPACE
@@ -184,6 +182,7 @@ zle -N expand-ealias
 
 # builtin
 alias sz="source $HOME/.zshrc"
+alias clear="printf '\33[H\33[2J'"
 
 if type exa >/dev/null 2>&1; then
   alias ls='exa --group-directories-first'
