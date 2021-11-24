@@ -126,13 +126,10 @@ zstyle ':completion:*:approximate:*' max-errors 1 numeric
 HISTFILE=${ZDOTDIR}/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-setopt histignoredups
-setopt appendhistory
-
-# ignore command starting with a space in history
+setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_SPACE
-
-# remove duplicate blanks
+setopt HIST_IGNORE_DUPS
+setopt BANG_HIST
 setopt HIST_REDUCE_BLANKS
 
 # key binding
