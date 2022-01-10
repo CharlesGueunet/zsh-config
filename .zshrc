@@ -338,15 +338,17 @@ function mvc(){
 }
 
 # clear on enter
-magic-enter() {
-	if [[ -z "$BUFFER" ]]; then
-		zle clear-screen
-	else
-		# Call built-in accept-line
-		zle .accept-line
-	fi
-}
-zle -N accept-line magic-enter
+if ! typeset -f magic-enter > /dev/null; then
+  magic-enter() {
+    if [[ -z "$BUFFER" ]]; then
+      zle clear-screen
+    else
+      # Call built-in accept-line
+      zle .accept-line
+    fi
+  }
+  zle -N accept-line magic-enter
+fi
 
 # Ctrl o: previous vim/kak like
 magic-popd () {
