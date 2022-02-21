@@ -7,13 +7,13 @@ fi
 
 if [ -v KKS_SESSION ]; then
   kks edit -s $KKS_SESSION "$@"
-  # if [ ! -v KKS_CLIENT ]; then
-  #   # spawn editor if no view for this session
-  #   kks attach
-  # fi
 else
   # not attached to session
-  for f in $@; do
-    kak "$f"
-  done
+  if [[ -z "$@" ]]; then
+    kak "$@"
+  else
+    for f in $@; do
+      kak "$f"
+    done
+  fi
 fi
