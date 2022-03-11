@@ -240,6 +240,7 @@ export EDITOR=$VISUAL
 export SVN_EDITOR=$EDITOR
 export GIT_EDITOR=vim
 export KEYTIMEOUT=1
+export BC_LINE_LENGTH=0 # fix for bc when no newline
 
 # Alias post command
 
@@ -266,13 +267,13 @@ fpath=($ZDOTDIR/completion/ $fpath)
 
 # ctrl z back and forth
 fancy-ctrl-z () {
-if [[ $#BUFFER -eq 0 ]]; then
-   BUFFER="fg"
-   zle accept-line
-else
-   zle push-input
-   zle clear-screen
-fi
+  if [[ $#BUFFER -eq 0 ]]; then
+     BUFFER="fg"
+     zle accept-line
+  else
+     zle push-input
+     zle clear-screen
+  fi
 }
 zle -N fancy-ctrl-z
 bindkey '^z' fancy-ctrl-z
@@ -290,31 +291,33 @@ vicd()
    cd "$dst"
 }
 vifm-call() {
-if [[ -z $BUFFER ]]; then
-  # interpreted at start, not when leaving
-  BUFFER="vicd"
-  zle accept-line
-fi
+  if [[ -z $BUFFER ]]; then
+    # interpreted at start, not when leaving
+    BUFFER="vicd"
+    zle accept-line
+  fi
 }
 zle -N vifm-call
 bindkey '^v' vifm-call
 
 # ctrl b pueue status
 pueue-call() {
-if [[ -z $BUFFER ]]; then
-  # interpreted at start, not when leaving
-  BUFFER="clear; pueue status"
-  zle accept-line
-fi
+  if [[ -z $BUFFER ]]; then
+    # interpreted at start, not when leaving
+    BUFFER="clear; pueue status"
+    zle accept-line
+  fi
 }
 zle -N pueue-call
 bindkey '^b' pueue-call
 
 # ctrl g command replace
 substitute-last() {
-  # interpreted at start, not when leaving
-  BUFFER="!!:gs/"
-  CURSOR=6
+  if [[ -z $BUFFER ]]; then
+    # interpreted at start, not when leaving
+    BUFFER="!!:gs/"
+    CURSOR=6
+  fi
 }
 zle -N substitute-last
 bindkey '^g' substitute-last
