@@ -239,7 +239,7 @@ fi
 export VISUAL="ke"
 export EDITOR=$VISUAL
 export SVN_EDITOR=$EDITOR
-export GIT_EDITOR=vim
+export GIT_EDITOR=$EDITOR
 export KEYTIMEOUT=1
 export BC_LINE_LENGTH=0 # fix for bc when no newline
 
