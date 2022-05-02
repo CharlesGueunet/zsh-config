@@ -212,7 +212,7 @@ alias -g MP="-- -j 6 -l 5"
 # editor
 alias ks='. ${ZDOTDIR}/bin/kks-new'
 alias kd='. ${ZDOTDIR}/bin/kks-detach'
-alias kss='eval $(kks-switch)'
+alias kss='kks-switch'
 alias :q="exit"
 alias :e="ke"
 alias a="kks a"
