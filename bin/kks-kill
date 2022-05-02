@@ -1,3 +1,4 @@
 #!/bin/sh
 
+kks kill
 unset KKS_SESSION KKS_CLIENT
