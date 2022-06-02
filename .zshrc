@@ -49,14 +49,6 @@ if [[ -a ${ZDOTDIR}/plugins_custom_conf.zsh ]]; then
    source ${ZDOTDIR}/plugins_custom_conf.zsh
 fi
 
-
-# Custom PATH
-# ###########
-
-if [[ -d "${ZDOTDIR}/bin" ]]; then
-  export PATH=$PATH:"${ZDOTDIR}/bin"
-fi
-
 # Vi mode
 # #######
 
@@ -201,7 +193,8 @@ ealias rb="rm -rf build/"
 ealias rmcmake="rm -rf CMakeFiles Makefile cmake_install.cmake CMakeCache.txt build.ninja rules.ninja"
 
 alias -g CC="-C ~/.config/cmake/base.cmake"
-alias -g NM="-G 'Ninja Multi-Config'"
+# alias -g NM="-G 'Ninja Multi-Config'"
+alias -g NN="-G 'Ninja'"
 alias -g CD="--config Debug"
 alias -g CR="--config Release"
 alias -g BB="--build build"
@@ -236,14 +229,6 @@ else
    alias rebind='setxkbmap -option compose:ralt'
 fi
 
-# Env
-export VISUAL="ke"
-export EDITOR=$VISUAL
-export SVN_EDITOR=$EDITOR
-export GIT_EDITOR=$EDITOR
-export KEYTIMEOUT=1
-export BC_LINE_LENGTH=0 # fix for bc when no newline
-
 # Alias post command
 
 alias -g G="| grep "
@@ -258,9 +243,33 @@ alias -g X="| xargs "
 alias -s {bib, c, cmake, cpp, h, hpp, md, rb, tex, txt, xml}=$EDITOR
 alias -s {vtu, vti, vtp, vtr, stl}=paraview
 
+# Env
+export VISUAL="ke"
+export EDITOR=$VISUAL
+export SVN_EDITOR=$EDITOR
+export GIT_EDITOR=$EDITOR
+export KEYTIMEOUT=1
+export BC_LINE_LENGTH=0 # fix for bc when no newline
+export GOPATH=$HOME/Software/go
+
+# Custom PATH
+if [[ -d "${ZDOTDIR}/bin" ]]; then
+  export PATH=$PATH:"${ZDOTDIR}/bin"
+fi
+if [[ -d "${HOME}/.cargo/bin" ]]; then
+  export PATH=$PATH:${HOME}/.cargo/bin
+fi
+
 # Functions (binded to keys)
 # #########
 
+# local zshrc
+
+function chpwd() {
+  if [ ! "$PWD" = "$HOME" ] && [ -r $PWD/.zshrc ]; then
+    source $PWD/.zshrc
+  fi
+}
 # man inside vim with completion
 vman () {
    MANWIDTH=150 MANPAGER='col -bx' man $@ | vim -R -c "set ft=man" -
