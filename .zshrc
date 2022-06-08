@@ -266,7 +266,7 @@ fi
 # local zshrc
 
 function chpwd() {
-  if [ ! "$PWD" = "$HOME" ] && [ -r $PWD/.zshrc ]; then
+  if [[ $UID -ne 0 ]] && [ ! "$PWD" = "$HOME" ] && [ -r $PWD/.zshrc ]; then
     source $PWD/.zshrc
   fi
 }
