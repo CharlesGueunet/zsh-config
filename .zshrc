@@ -113,6 +113,8 @@ zstyle ':completion:*' completer _expand_alias _complete _match _approximate
 zstyle ':completion:*' regular true
 zstyle ':completion:*:match:*' original only
 zstyle ':completion:*:approximate:*' max-errors 1 numeric
+zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"                       # color output with LS_COLORS
+zstyle ":fzf-tab:complete:cd:*" fzf-preview 'exa -1 --color=always $realpath' # Preview directories with exa
 
 # history
 HISTFILE=${ZDOTDIR}/.zsh_history
@@ -210,6 +212,8 @@ alias kss='eval $(kks-switch)'
 alias :q="exit"
 alias :e="ke"
 alias a="kks a"
+alias cat="bat --paging=never"
+alias less="bat --paging=always"
 
 # git
 ealias gitgraph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
