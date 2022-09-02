@@ -9,7 +9,7 @@ fi
 
 size=`wc -c < "$@"`
 
-if [ $size -le 10000 ]; then
+if [ $size -le 100000 ]; then
    $VIEWER $1
 else
    echo "File too large: $size"
