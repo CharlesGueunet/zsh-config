@@ -1,10 +1,10 @@
 # Created by Charles Gueunet <charles.gueunet+zsh@gmail.com>
 
 # Follow the link (if any) to find the config folder
-if [ -L $HOME/.zshrc ]; then
+if [ -L "$HOME/.zshrc" ]; then
    export ZDOTDIR=$(dirname `readlink -f $HOME/.zshrc`)
 else
-   export ZDOTDIR=${HOME}/.config/zsh/
+   export ZDOTDIR="${HOME}/.config/zsh/"
 fi
 
 # tmux autostart
@@ -29,7 +29,7 @@ fi
 
 # Clone zcomet if necessary
 if [[ ! -f ${ZDOTDIR}/.zcomet/bin/zcomet.zsh ]]; then
-  command git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR}/.zcomet/bin
+  command git clone "https://github.com/agkozak/zcomet.git" "${ZDOTDIR}/.zcomet/bin"
 fi
 
 source ${ZDOTDIR}/.zcomet/bin/zcomet.zsh
@@ -49,13 +49,11 @@ if [[ -a ${ZDOTDIR}/plugins_custom_conf.zsh ]]; then
    source ${ZDOTDIR}/plugins_custom_conf.zsh
 fi
 
-# Vi mode
+# Kak mode
 # #######
 
-bindkey -v
-bindkey -M vicmd v edit-command-line
-bindkey -M viins "^P" up-line-or-search
-bindkey -M viins "^N" down-line-or-search
+source "${ZDOTDIR}/kak-mode.zsh"
+zle_highlight=(region:bg=green,fg=black)
 
 # edit
 autoload -U edit-command-line
