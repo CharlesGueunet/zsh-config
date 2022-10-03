@@ -1,11 +1,15 @@
+#emulate -L zsh
+#
 # kak mode for zsh
 bindkey -v
-
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
+
+# switch to vi (kak) mode
+bindkey -v
 
 # bindkey - visual
 # don't use visual keymap - only visual mode
@@ -206,43 +210,53 @@ zle -N kak-forward-char
 
 # cursor word
 kak-backward-word() {
-  CS=${CURSOR}
-  zle vi-backward-word -n 1
-  zle vi-forward-word -n 1
-  test ${CS} -eq ${CURSOR} && CURSOR=$(( ${CS} - 1 )) || CURSOR=${CS}
   if test 1 -lt ${NUMERIC:-0}; then
-    zle vi-backward-word $(( ${NUMERIC} - 1 ))
-    CURSOR=$(( ${CURSOR} - 1 ))
+    zle vi-backward-word -n $(( ${NUMERIC} - 1 ))
   fi
   zle kak-reset-visual
   zle vi-backward-word -n 1
+  CS=${CURSOR}
+  MS=${MARK}
+  zle vi-forward-word -n 1
+  test ${MS} -eq ${CURSOR} && MARK=$(( ${CURSOR} - 1 )) || MARK=${MS}
+  CURSOR=${CS}
 }
 zle -N kak-backward-word
 
 kak-backward-blank-word() {
-  CS=${CURSOR}
-  zle vi-backward-blank-word -n 1
-  zle vi-forward-blank-word -n 1
-  test ${CS} -eq ${CURSOR} && CURSOR=$(( ${CS} - 1 )) || CURSOR=${CS}
   if test 1 -lt ${NUMERIC:-0}; then
-    zle vi-backward-blank-word $(( ${NUMERIC} - 1 ))
-    CURSOR=$(( ${CURSOR} - 1 ))
+    zle vi-backward-blank-word -n $(( ${NUMERIC} - 1 ))
   fi
   zle kak-reset-visual
   zle vi-backward-blank-word -n 1
+  CS=${CURSOR}
+  MS=${MARK}
+  zle vi-forward-blank-word -n 1
+  test ${MS} -eq ${CURSOR} && MARK=$(( ${CURSOR} - 1 )) || MARK=${MS}
+  CURSOR=${CS}
 }
 zle -N kak-backward-blank-word
 
 kak-forward-word-end() {
   CS=${CURSOR}
-  zle vi-forward-word -n 1
-  test $(( ${CS} + 2 )) -eq ${CURSOR} && CURSOR=$(( ${CS} + 1 )) || CURSOR=${CS}
   if test 1 -lt ${NUMERIC:-0}; then
-    zle vi-forward-word-end $(( ${NUMERIC} - 1 ))
-    CURSOR=$(( ${CURSOR} + 1 ))
+    zle select-in-word -n 1
+    if test ${CS} -eq ${CURSOR}; then
+      zle vi-forward-word-end -n $(( ${NUMERIC} - 1 ))
+    else
+      test 2 -lt ${NUMERIC} && zle vi-forward-word-end -n $(( ${NUMERIC} -2 ))
+    fi
+    CS=${CURSOR}
   fi
   zle kak-reset-visual
-  zle vi-forward-word-end -n 1
+  zle select-in-word -n 1
+  if test ${CS} -eq ${CURSOR}; then
+    zle kak-reset-visual
+    zle vi-forward-word-end -n 1
+    MARK=$(( ${CS} + 1 ))
+  else
+    MARK=${CS}
+  fi
 }
 zle -N kak-forward-word-end
 
@@ -251,7 +265,7 @@ kak-forward-blank-word-end() {
   zle vi-forward-blank-word -n 1
   test $(( ${CS} + 2 )) -eq ${CURSOR} && CURSOR=$(( ${CS} + 1 )) || CURSOR=${CS}
   if test 1 -lt ${NUMERIC:-0}; then
-    zle vi-forward-blank-word-end $(( ${NUMERIC} - 1 ))
+    zle vi-forward-blank-word-end -n $(( ${NUMERIC} - 1 ))
     CURSOR=$(( ${CURSOR} + 1 ))
   fi
   zle kak-reset-visual
@@ -270,6 +284,17 @@ kak-sel-forward-word() {
 }
 zle -N kak-sel-forward-word
 
+kak-sel-forward-blank-word() {
+  CS=${CURSOR}
+  zle vi-forward-blank-word -n 1
+  test $(( ${CS} + 1 )) = ${CURSOR} && zle vi-forward-blank-word -n 1
+  if test 1 -lt ${NUMERIC:-0}; then
+    zle vi-forward-blank-word -n $(( ${NUMERIC} - 1 ))
+  fi
+  zle vi-backward-char -n 1
+}
+zle -N kak-sel-forward-blank-word
+
 kak-forward-word() {
   CS=${CURSOR}
   zle kak-reset-visual
@@ -287,17 +312,6 @@ kak-forward-word() {
   zle vi-backward-char -n 1
 }
 zle -N kak-forward-word
-
-kak-sel-forward-blank-word() {
-  CS=${CURSOR}
-  zle vi-forward-blank-word -n 1
-  test $(( ${CS} + 1 )) = ${CURSOR} && zle vi-forward-blank-word -n 1
-  if test 1 -lt ${NUMERIC:-0}; then
-    zle vi-forward-blank-word -n $(( ${NUMERIC} - 1 ))
-  fi
-  zle vi-backward-char -n 1
-}
-zle -N kak-sel-forward-blank-word
 
 kak-forward-blank-word() {
   CS=${CURSOR}
@@ -327,6 +341,7 @@ bindkey -M vicmd "^J" kak-accept-line
 
 bindkey -M vicmd "<" kak-unindent
 bindkey -M vicmd ">" kak-indent
+bindkey -M vicmd ";" kak-reset-visual
 bindkey -M vicmd "\e;" exchange-point-and-mark
 bindkey -M vicmd "\e:" kak-mark-point
 bindkey -M vicmd "." vi-repeat-change
@@ -346,7 +361,6 @@ bindkey -M vicmd "d" kak-delete
 bindkey -M vicmd "f" vi-find-next-char
 bindkey -M vicmd "\ef" vi-find-prev-char
 bindkey -M vicmd "i" kak-insert
-bindkey -M vicmd "\en" vi-rev-repeat-search
 bindkey -M vicmd "o" vi-open-line-below
 bindkey -M vicmd "p" kak-put-after
 bindkey -M vicmd "r" vi-replace-chars
@@ -359,15 +373,16 @@ bindkey -M vicmd "y" kak-yank
 bindkey -M vicmd "k" kak-up-line
 bindkey -M vicmd "j" kak-down-line
 
-bindkey -M viins "^P" up-line-or-search
-bindkey -M viins "^N" down-line-or-search
-
 bindkey -M vicmd "H" vi-backward-char
 bindkey -M vicmd "h" kak-backward-char
-bindkey -M vicmd "\eh" vi-beginning-of-line
+# cannot distinguish between Alt and Escape
+#bindkey -M vicmd "\eh" vi-beginning-of-line
 bindkey -M vicmd "L" vi-forward-char
 bindkey -M vicmd "l" kak-forward-char
-bindkey -M vicmd "\el" vi-end-of-line
+#bindkey -M vicmd "\el" vi-end-of-line
+
+bindkey -M viins "^P" up-line-or-search
+bindkey -M viins "^N" down-line-or-search
 
 bindkey -M vicmd "Gh" vi-beginning-of-line
 bindkey -M vicmd "gh" kak-beginning-of-line
@@ -389,7 +404,7 @@ bindkey -M vicmd "\ew" kak-forward-blank-word
 bindkey -M vicmd "\eW" kak-sel-forward-blank-word
 
 # edit-command-line
-autoload edit-command-line
+autoload -Uz edit-command-line
 zle -N edit-command-line
 
 kak-edit-command-line() {
@@ -398,3 +413,4 @@ kak-edit-command-line() {
 }
 zle -N kak-edit-command-line
 bindkey -M vicmd '^V' kak-edit-command-line
+
