@@ -375,11 +375,10 @@ bindkey -M vicmd "j" kak-down-line
 
 bindkey -M vicmd "H" vi-backward-char
 bindkey -M vicmd "h" kak-backward-char
-# cannot distinguish between Alt and Escape
-#bindkey -M vicmd "\eh" vi-beginning-of-line
+bindkey -M vicmd "\eh" vi-beginning-of-line
 bindkey -M vicmd "L" vi-forward-char
 bindkey -M vicmd "l" kak-forward-char
-#bindkey -M vicmd "\el" vi-end-of-line
+bindkey -M vicmd "\el" vi-end-of-line
 
 bindkey -M viins "^P" up-line-or-search
 bindkey -M viins "^N" down-line-or-search

@@ -221,7 +221,7 @@ alias GD="GIT_EXTERNAL_DIFF=difft"
 ealias t="tmux -2"
 ealias ta="tmux -2 a"
 function tmux-kill-unnamed {
-  tmux ls -F'#{session_name}'|egrep '^[0-9]+$'|xargs -I% tmux kill-session -t "=%"
+  tmux ls -F'#{session_name}'|grep -E '^[0-9]+$'|xargs -I% tmux kill-session -t "=%"
 }
 
 # Keyboard qwerty with accent
