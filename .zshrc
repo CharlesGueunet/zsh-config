@@ -169,6 +169,14 @@ function expand-ealias()
 
 zle -N expand-ealias
 
+# Custom PATH
+if [[ -d "${ZDOTDIR}/bin" ]]; then
+  export PATH=$PATH:"${ZDOTDIR}/bin"
+fi
+if [[ -d "${HOME}/.cargo/bin" ]]; then
+  export PATH=$PATH:${HOME}/.cargo/bin
+fi
+
 # builtin
 alias sz="source $HOME/.zshrc"
 alias clear="printf '\33[H\33[2J'"
@@ -254,14 +262,6 @@ export TIG_EDITOR=$EDITOR
 export KEYTIMEOUT=1
 export BC_LINE_LENGTH=0 # fix for bc when no newline
 export GOPATH=$HOME/Software/go
-
-# Custom PATH
-if [[ -d "${ZDOTDIR}/bin" ]]; then
-  export PATH=$PATH:"${ZDOTDIR}/bin"
-fi
-if [[ -d "${HOME}/.cargo/bin" ]]; then
-  export PATH=$PATH:${HOME}/.cargo/bin
-fi
 
 # Functions (binded to keys)
 # #########
