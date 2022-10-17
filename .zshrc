@@ -266,19 +266,6 @@ export GOPATH=$HOME/Software/go
 # Functions (binded to keys)
 # #########
 
-# local zshrc
-
-function chpwd() {
-  if [[ $UID -ne 0 ]] && [ ! "$PWD" = "$HOME" ] && [ -r $PWD/.zshrc ]; then
-    source $PWD/.zshrc
-  fi
-}
-# man inside vim with completion
-vman () {
-   MANWIDTH=150 MANPAGER='col -bx' man $@ | vim -R -c "set ft=man" -
-}
-fpath=($ZDOTDIR/completion/ $fpath)
-
 # ctrl z back and forth
 fancy-ctrl-z () {
   if [[ $#BUFFER -eq 0 ]]; then
@@ -387,6 +374,10 @@ fi
 
 if [[ -f "${ZDOTDIR}/LS_COLORS" ]]; then
   eval $(dircolors -b "${ZDOTDIR}/LS_COLORS")
+fi
+
+if command -v direnv &> /dev/null; then
+  eval "$(direnv hook zsh)"
 fi
 
 # Custom conf (in $ZDOTDIR or $HOME)
