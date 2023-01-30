@@ -5,6 +5,10 @@ if [[ "$1" == "-f" ]]; then
   shift
 fi
 
+if [ "$#" -eq 1 ] && ! [ -f "$1" ]; then
+  touch "$1"
+fi
+
 if [ -v KKS_SESSION ]; then
   kks edit -s $KKS_SESSION "$@"
 else

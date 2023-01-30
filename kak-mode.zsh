@@ -350,7 +350,7 @@ bindkey -M vicmd "~" kak-up-case
 bindkey -M vicmd "\`" kak-down-case
 bindkey -M vicmd "A" kak-add-eol
 bindkey -M vicmd "I" kak-insert-bol
-bindkey -M vicmd "\eJ" vi-join
+bindkey -M vicmd "J" vi-join
 bindkey -M vicmd "O" vi-open-line-above
 bindkey -M vicmd "P" kak-put-before
 bindkey -M vicmd "U" redo
