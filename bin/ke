@@ -6,6 +6,7 @@ if [[ "$1" == "-f" ]]; then
 fi
 
 if [ "$#" -eq 1 ] && ! [ -f "$1" ]; then
+  echo "create $1"
   touch "$1"
 fi
 
