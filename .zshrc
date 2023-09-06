@@ -10,9 +10,27 @@ fi
 # tmux autostart
 # ##############
 
-if command -v tmux &> /dev/null && [[ $UID -ne 0 ]] && [[ -v DISPLAY ]] && [[ -v KITTY_WINDOW_ID ]] && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux
-fi
+# ZJ_SESSIONS=$(zellij list-sessions)
+# NO_SESSIONS=$(echo "${ZJ_SESSIONS}" | wc -l)
+# if [ "${NO_SESSIONS}" -ge 2 ]; then
+#     zellij attach \
+#     "$(echo "${ZJ_SESSIONS}" | sk)"
+# else
+#    zellij attach -c
+# fi
+
+# if [[ -z "$ZELLIJ" ]]; then
+#     if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
+#         zellij attach -c
+#     else
+#         zellij
+#     fi
+#     if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
+#         exit
+#     fi
+# elif command -v tmux &> /dev/null && [[ $UID -ne 0 ]] && [[ -v DISPLAY ]] && [[ -v KITTY_WINDOW_ID ]] && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#   exec tmux
+# fi
 
 # notify
 # ######
@@ -232,6 +250,10 @@ function tmux-kill-unnamed {
   tmux ls -F'#{session_name}'|grep -E '^[0-9]+$'|xargs -I% tmux kill-session -t "=%"
 }
 
+# zellij
+ealias z="zellij"
+ealias za="zellij attach "
+
 # Keyboard qwerty with accent
 if [[ -f "${HOME}/.Xmodmap" ]]; then
    alias rebind="setxkbmap -option compose:rctrl ; xmodmap ${HOME}/.Xmodmap"
@@ -376,12 +398,17 @@ if [[ -f "${ZDOTDIR}/LS_COLORS" ]]; then
   eval $(dircolors -b "${ZDOTDIR}/LS_COLORS")
 fi
 
+# direnv
 if command -v direnv &> /dev/null; then
   eval "$(direnv hook zsh)"
+fi
+
+# broot launcher
+if [[ -f "${HOME}/.config/broot/launcher/bash/br" ]]; then
+  source "${HOME}/.config/broot/launcher/bash/br"
 fi
 
 # Custom conf (in $ZDOTDIR or $HOME)
 if [[ -f "${ZDOTDIR}/zshrc_custom.zsh" ]]; then
   source "${ZDOTDIR}/zshrc_custom.zsh"
 fi
-
