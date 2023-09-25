@@ -100,6 +100,7 @@ setopt NO_BEEP
 
 # avoid automatic change the title
 DISABLE_AUTO_TITLE=true
+ZSH_THEME_TERM_TITLE_IDLE="%~"
 
 # Glob is clever research / completion
 setopt NO_CASE_GLOB
@@ -130,7 +131,7 @@ zstyle ':completion:*' regular true
 zstyle ':completion:*:match:*' original only
 zstyle ':completion:*:approximate:*' max-errors 1 numeric
 zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"                       # color output with LS_COLORS
-zstyle ":fzf-tab:complete:cd:*" fzf-preview 'exa -1 --color=always $realpath' # Preview directories with exa
+zstyle ":fzf-tab:complete:cd:*" fzf-preview 'eza -1 --color=always $realpath' # Preview directories with eza
 
 # history
 HISTFILE=${ZDOTDIR}/.zsh_history
@@ -199,12 +200,12 @@ fi
 alias sz="source $HOME/.zshrc"
 alias clear="printf '\33[H\33[2J'"
 
-if type exa >/dev/null 2>&1; then
-  alias ls='exa --group-directories-first'
-  alias l='exa -lh --group-directories-first'
-  alias ll='exa -l --group-directories-first --all'
-  alias lt='exa -T --git-ignore --level=2 --group-directories-first'
-  alias lg='exa -l --all --group-directories-first --git'
+if type eza >/dev/null 2>&1; then
+  alias ls='eza --group-directories-first'
+  alias l='eza -lh --group-directories-first'
+  alias ll='eza -l --group-directories-first --all'
+  alias lt='eza -T --git-ignore --level=2 --group-directories-first'
+  alias lg='eza -l --all --group-directories-first --git'
 else
   alias l='ls -lah'
   alias ll='ls -alF'
