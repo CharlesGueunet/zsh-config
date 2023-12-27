@@ -198,6 +198,7 @@ fi
 # builtin
 alias sz="source $HOME/.zshrc"
 alias clear="printf '\33[H\33[2J'"
+alias startm="XINITRC=$HOME/.xinitrc_mate startx"
 
 if type exa >/dev/null 2>&1; then
   alias ls='exa --group-directories-first'
