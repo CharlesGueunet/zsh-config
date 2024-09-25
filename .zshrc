@@ -220,7 +220,7 @@ ealias cb="cd build"
 ealias rb="rm -rf build/"
 ealias rmcmake="rm -rf CMakeFiles Makefile cmake_install.cmake CMakeCache.txt build.ninja rules.ninja"
 
-alias -g CMB="-C ~/.config/cmake/base.cmake"
+alias -g CC="-C ~/.config/cmake/base.cmake"
 # alias -g NM="-G 'Ninja Multi-Config'"
 alias -g NN="-G 'Ninja'"
 alias -g CD="--config Debug"
