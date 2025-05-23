@@ -35,12 +35,12 @@ fi
 # notify
 # ######
 
-if [[ -v DISPLAY && -s "${ZDOTDIR:-$HOME}/notify/notify.plugin.zsh" ]]; then
-   source "${ZDOTDIR:-$HOME}/notify/notify.plugin.zsh"
-   zstyle ':notify:*' error-title "Command failed (#{time_elapsed} seconds)"
-   zstyle ':notify:*' success-title "Command success (#{time_elapsed} seconds)"
-   zstyle ':notify:*' expire-time 2500
-fi
+# if [[ -v DISPLAY && -s "${ZDOTDIR:-$HOME}/notify/notify.plugin.zsh" ]]; then
+#    source "${ZDOTDIR:-$HOME}/notify/notify.plugin.zsh"
+#    zstyle ':notify:*' error-title "Command failed (#{time_elapsed} seconds)"
+#    zstyle ':notify:*' success-title "Command success (#{time_elapsed} seconds)"
+#    zstyle ':notify:*' expire-time 2500
+# fi
 
 # ZComet
 # ######
@@ -238,7 +238,7 @@ alias kss='eval $(kks-switch)'
 alias :q="exit"
 alias :e="ke"
 alias a="kks a"
-alias cat="bat --paging=never"
+# alias cat="bat --paging=never"
 alias less="bat --paging=always"
 
 # git
