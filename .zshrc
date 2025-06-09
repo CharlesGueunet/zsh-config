@@ -240,6 +240,30 @@ alias :e="ke"
 alias a="kks a"
 # alias cat="bat --paging=never"
 alias less="bat --paging=always"
+kegrep() {
+  local pattern=$1
+  local dir=${2:-.}  # default to current directory if not provided
+
+  if [[ -z "$pattern" ]]; then
+    echo "Usage: open_matching_files <pattern> [directory]"
+    return 1
+  fi
+  local files=()
+  while IFS= read -r -d '' file; do
+    files+=("$file")
+  done < <(grep -rlZ "$pattern" "$dir")
+
+  if [[ ${#files[@]} -eq 0 ]]; then
+    echo "No matching files found."
+    return 0
+  fi
+
+  for f in ${files}; do
+    kak "$f"
+    sleep 0.1 # allow to ctrl-c
+  done
+}
+
 
 # git
 ealias gitgraph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
