@@ -14,11 +14,9 @@ if [ -v KKS_SESSION ]; then
   kks edit -s $KKS_SESSION "$@"
 else
   # not attached to session
-  if [[ -z "$@" ]]; then
-    kak "$@"
+  if [ -d "$@" ]; then
+    vifm "$@"
   else
-    for f in $@; do
-      kak "$f"
-    done
+    kak "$@"
   fi
 fi
