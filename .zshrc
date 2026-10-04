@@ -437,7 +437,6 @@ if [[ -f "${ZDOTDIR}/zshrc_custom.zsh" ]]; then
   source "${ZDOTDIR}/zshrc_custom.zsh"
 fi
 
+[[ ! -f ~/.config/broot/launcher/bash/br ]] || source ~/.config/broot/launcher/bash/br
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-
-[[ ! -f ~/.config/broot/launcher/bash/br ]] || source ~/.config/broot/launcher/bash/br
